@@ -8,9 +8,10 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ config('app.name', 'Laravel') }} | @yield('title') </title>
   <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+  @yield('styles')
   <link href="{{ asset('backend/css/sb-admin.css') }}" rel="stylesheet">
 </head>
 
@@ -37,17 +38,9 @@
     <div class="container-fluid">
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="index.html">Dashboard</a>
-        </li>
-        <li class="breadcrumb-item active">Blank Page</li>
+        <li class="breadcrumb-item"><strong>@yield('title')</strong></li>
       </ol>
-      <div class="row">
-        <div class="col-12">
-          <h1>Blank</h1>
-          <p>This is an example of a blank page that you can use as a starting point for creating new ones.</p>
-        </div>
-      </div>
+      @yield('content')
     </div>
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
@@ -80,14 +73,13 @@
         </div>
       </div>
     </div>
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('backend/js/sb-admin.min.js') }}"></script>
   </div>
+  <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+  <script src="{{ asset('vendor/datatables/jquery.dataTables.js') }}"></script>
+  <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.js') }}"></script>
+  <script src="{{ asset('backend/js/sb-admin.min.js') }}"></script>
+  @yield('scripts')
 </body>
-
 </html>

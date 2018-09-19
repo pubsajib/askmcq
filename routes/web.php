@@ -10,12 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware' => ['web']], function () {
+	Route::prefix('admin')->group(function () {
+	    Route::get('/', 'AdminController@index')->name('dashboard');
+	    Route::get('/logout', 'AdminController@logout')->name('admin.logout');
+	});
 
-Route::prefix('admin')->group(function () {
-    Route::get('/', 'AdminController@index')->name('dashboard');
-    Route::get('/logout', 'AdminController@logout')->name('admin.logout');
+	// User routes
+	Route::resource('user', 'UserController', ['except'=>['create', 'store']]);
+
+	Route::get('/', function () { return view('welcome'); });
+	Auth::routes();
+	Route::get('/home', 'HomeController@index')->name('home');
 });
-
-Route::get('/', function () { return view('welcome'); });
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');

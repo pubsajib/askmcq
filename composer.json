@@ -19,6 +19,10 @@
         "phpunit/phpunit": "^7.0"
     },
     "autoload": {
+        "files": [
+            "app/Helpers/helper.php",
+            "app/Helpers/user.php"
+        ],
         "classmap": [
             "database/seeds",
             "database/factories"
