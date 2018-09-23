@@ -9,20 +9,25 @@ use Image;
 use File;
 
 class UserController extends Controller {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct() {
+        // $this->middleware('auth');
+    }
+    
     public function index() {
         $users = User::all();
         return view('users.index')->withUsers($users);
     }
+
+    public function activeUsers() {
+        $users = User::where('is_active', '1')->get();
+        return view('users.index')->withUsers($users);
+    }
+
+    public function inactiveUsers() {
+        $users = User::where('is_active', '0')->get();
+        return view('users.index')->withUsers($users);
+    }
+
 
     /**
      * Display the specified resource.
@@ -96,8 +101,7 @@ class UserController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         dd('destroy user');
     }
     public function profile($id) {
