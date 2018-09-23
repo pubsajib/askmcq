@@ -11,6 +11,18 @@
     <span class="nav-link-text">Users</span>
   </a>
 </li>
+<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+  <a class="nav-link" href="{{ route('role.index') }}">
+    <i class="fa fa-fw fa-user"></i>
+    <span class="nav-link-text">User Role</span>
+  </a>
+</li>
+<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+  <a class="nav-link" href="{{ route('profile', auth()->User()->id) }}">
+    <i class="fa fa-fw fa-user"></i>
+    <span class="nav-link-text">Profile</span>
+  </a>
+</li>
 
 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
   <a class="nav-link" href="charts.html">

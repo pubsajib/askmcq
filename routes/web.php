@@ -10,16 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware' => ['web']], function () {
-	Route::prefix('admin')->group(function () {
-	    Route::get('/', 'AdminController@index')->name('dashboard');
-	    Route::get('/logout', 'AdminController@logout')->name('admin.logout');
-	});
-
-	// User routes
-	Route::resource('user', 'UserController', ['except'=>['create', 'store']]);
-
-	Route::get('/', function () { return view('welcome'); });
-	Auth::routes();
-	Route::get('/home', 'HomeController@index')->name('home');
+Route::prefix('admin')->group(function () {
+    Route::get('/', 'AdminController@index')->name('dashboard');
+    Route::get('/logout', 'AdminController@logout')->name('admin.logout');
 });
+
+// User routes
+Route::resource('user', 'UserController', ['except'=>['create', 'store']]);
+Route::get('profile/{profile}', 'UserController@profile')->name('profile')->middleware('verified');
+// Role routes
+Route::get('/role', 'RoleController@index')->name('role.index')->middleware('roles:admin');
+Route::post('/role/{role}', 'RoleController@update')->name('role.update')->middleware('roles:admin');
+
+Route::get('/', function () { return view('welcome'); });
+Auth::routes(['verify' => true]);
+Route::get('/home', 'HomeController@index')->name('home');

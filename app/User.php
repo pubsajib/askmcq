@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable {
+class User extends Authenticatable implements MustVerifyEmail{
     use Notifiable;
 
     /**
@@ -23,10 +24,23 @@ class User extends Authenticatable {
      */
     protected $hidden = ['password', 'remember_token', ];
 
-    public function posts() {
-        return $this->hasMany(Post::class);
+    public function roles() {
+        return $this->belongsToMany(Role::class, 'role_user');
     }
-    public function comments() {
-        return $this->hasMany(Comment::class)->where('is_approved', 1);
+    public function hasRole($role) {
+        if ($this->roles()->where('name', $role)->first()) {
+            return true;
+        }
+        return false;
+    }
+    public function hasAnyRole($roles) {
+        if (is_array($roles)) {
+            foreach ($roles as $role) {
+                if ($this->hasRole($role)) return true;
+            }
+        } else {
+            if ($this->hasRole($roles)) return true;
+        }
+        return false;
     }
 }

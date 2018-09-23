@@ -100,4 +100,7 @@ class UserController extends Controller {
     {
         dd('destroy user');
     }
+    public function profile($id) {
+        dd('profilePage');
+    }
 }
