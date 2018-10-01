@@ -36,7 +36,7 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        $user = User::where('id', $id)->with('posts', 'comments')->first();
+        $user = User::where('id', $id)->first();
         return view('users.show')->withUser($user);
     }
 
