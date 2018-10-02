@@ -16,7 +16,7 @@ Route::prefix('admin')->group(function () {
 });
 
 // User routes
-Route::resource('user', 'UserController', ['except'=>['create', 'store']]);
+Route::resource('user', 'UserController');
 Route::get('user-active', 'UserController@activeUsers')->name('user.active');
 Route::get('user-inactive', 'UserController@inactiveUsers')->name('user.inactive');
 Route::get('profile/{profile}', 'UserController@profile')->name('profile')->middleware('verified');

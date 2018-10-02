@@ -14,6 +14,20 @@ class UsersTableSeeder extends Seeder
         // Create default admin
         DB::table('users')->insert([
             [
+                'name'              => 'Sabuz', 
+                'email'             => 'sabuz.phase3@gmail.com', 
+                'education'         => 'BSc in economics', 
+                'institution'       => 'Example name college', 
+                'exp_years'         => rand(1,5), 
+                'exp_type'          => 'Javascript', 
+                'user_type'         => 0, 
+                'is_active'         => '1', 
+                'email_verified_at' => date('Y-m-d H:i:s', time()),
+                'password'          => bcrypt('32bit.PNG'), 
+                'created_at'        => date("Y-m-d h:i:s"), 
+                'updated_at'        => date("Y-m-d h:i:s")
+            ],
+            [
                 'name'              => 'Admin', 
                 'email'             => 'admin@gmail.com', 
                 'education'         => 'BSc in economics', 
@@ -63,7 +77,7 @@ class UsersTableSeeder extends Seeder
                 'exp_years'         => rand(1,5), 
                 'exp_type'          => 'Javascript', 
                 'user_type'         => 1, 
-                'is_active'         => '0', 
+                'is_active'         => '', 
                 'email_verified_at' => date('Y-m-d H:i:s', time()),
                 'password'          => bcrypt('123456'), 
                 'created_at'        => date("Y-m-d h:i:s"), 

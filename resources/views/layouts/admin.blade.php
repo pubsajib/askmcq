@@ -11,8 +11,9 @@
   <title>{{ config('app.name', 'Laravel') }} | @yield('title') </title>
   <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-  @yield('styles')
   <link href="{{ asset('backend/css/sb-admin.css') }}" rel="stylesheet">
+  <link href="{{ asset('backend/css/app.css') }}" rel="stylesheet">
+  @yield('styles')
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -38,8 +39,10 @@
     <div class="container-fluid">
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
+        @yield('breadcrumb')
         <li class="breadcrumb-item"><strong>@yield('title')</strong></li>
       </ol>
+      
       @yield('content')
     </div>
     <!-- /.container-fluid-->

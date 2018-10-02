@@ -27,8 +27,12 @@
                         <td> {{ $user->exp_type }}</td>
                         <td> {{ $user->exp_years }}</td>
                         <td style="text-align: center;">
-                            <a class="btn btn-sm btn-info">Edit</a>
-                            <a class="btn btn-sm btn-danger">Inactive</a>
+                            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-dark" title="Edit"><i class="fa fa-edit"></i></a>
+                            @if ($user->is_active == 1)
+                                <a class="btn btn-sm btn-danger" title="Deactivate"><i class="fa fa-times-circle"></i></a>
+                            @else
+                                <a class="btn btn-sm btn-info" title="Acitvate"><i class="fa fa-check-circle"></i></a>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

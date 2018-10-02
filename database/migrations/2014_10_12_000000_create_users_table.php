@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->integer('exp_years')->unsigned()->nullable();
             $table->string('exp_type')->nullable();
             $table->integer('user_type')->unsigned()->default(0);
-            $table->enum('is_active', ['0', '1'])->default('0');
+            $table->enum('is_active', ['', '0', '1'])->default('')->comment('""=>never activated, 0=>inactive & 1=>active');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
