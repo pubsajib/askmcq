@@ -52,6 +52,18 @@ class UserController extends Controller {
             'exp_years' => 'required|integer',
             'exp_type' => 'required',
         ]);
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->education = $request->education;
+        $user->institution = $request->institution;
+        $user->exp_years = $request->exp_years;
+        $user->exp_type = $request->exp_type;
+        $user->password = bcrypt('123456');
+        $user->email_verified_at = date('Y-m-d');
+
+        $user->save();
+        Session::flash('success', 'User added successfully.');
         return view('users.create');
     }
 
