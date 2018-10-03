@@ -5,16 +5,6 @@
 @endsection
 @section('content')
   <div class="row">
-    @if ($inactiveUsers = inactiveUsers())
-        <div class="col-md-12">
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-              <strong>New user remainder!</strong> You have <strong>{{ $inactiveUsers }}</strong> new {{ $inactiveUsers > 1 ? 'users' : 'user'}} to <a href="{{ route('user.inactive') }}">active</a>.
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-        </div>
-    @endif
     <div class="col-md-12">
     	@if (!$users->isEmpty())
             <table id="dataTable" class="table table-striped table-bordered" style="width:100%">
@@ -101,4 +91,5 @@
             }
         });
     </script>
+    
 @endsection

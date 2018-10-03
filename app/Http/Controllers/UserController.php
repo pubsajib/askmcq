@@ -20,12 +20,17 @@ class UserController extends Controller {
 
     public function activeUsers() {
         $users = User::where('is_active', '1')->get();
-        return view('users.index')->withUsers($users);
+        return view('users.status')->withUsers($users);
     }
 
     public function inactiveUsers() {
+        $users = User::where('is_active', '')->get();
+        return view('users.status')->withUsers($users);
+    }
+
+    public function freezeUsers() {
         $users = User::where('is_active', '0')->get();
-        return view('users.index')->withUsers($users);
+        return view('users.status')->withUsers($users);
     }
 
     public function show($id) {
@@ -38,6 +43,15 @@ class UserController extends Controller {
     }
 
     public function store(Request $request) {
+        // validation
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users,email',
+            'education' => 'required',
+            'institution' => 'required|min:3',
+            'exp_years' => 'required|integer',
+            'exp_type' => 'required',
+        ]);
         return view('users.create');
     }
 
@@ -46,8 +60,21 @@ class UserController extends Controller {
         return view('users.edit')->withUser($user);
     }
 
+    public function updateStaush(Request $request, $id) {
+        $data = [];
+        $user = User::find($id);
+        if ($user) {
+            $user->is_active  = $request->is_active;
+            $user->save();
+            $data['status'] = 200;
+            $data['message'] = 'Updated successfully.';
+            return json_encode($data);
+        }
+        $data['status'] = 400;
+        $data['message'] = 'Update failed.';
+        return json_encode($data);
+    }
     public function update(Request $request, $id) {
-        dd($id);
         $user = User::find($id);
 
         // validation

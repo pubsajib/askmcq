@@ -18,7 +18,9 @@ Route::prefix('admin')->group(function () {
 // User routes
 Route::resource('user', 'UserController');
 Route::get('user-active', 'UserController@activeUsers')->name('user.active');
+Route::get('user-freeze', 'UserController@freezeUsers')->name('user.freeze');
 Route::get('user-inactive', 'UserController@inactiveUsers')->name('user.inactive');
+Route::put('user-status/{user}', 'UserController@updateStaush')->name('user.changeStatus');
 Route::get('profile/{profile}', 'UserController@profile')->name('profile')->middleware('verified');
 // Role routes
 Route::get('/role', 'RoleController@index')->name('role.index')->middleware('roles:admin');

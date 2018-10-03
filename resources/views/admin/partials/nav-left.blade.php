@@ -1,5 +1,5 @@
+@php ($inactiveUsers = inactiveUsers())
 <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-
 {{-- DASHBOARD --}}
 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
   <a class="nav-link" href="index.html">
@@ -12,12 +12,13 @@
 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
   <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseUsers" data-parent="#exampleAccordion">
     <i class="fa fa-fw fa-users"></i>
-    <span class="nav-link-text">Users</span>
+    <span class="nav-link-text">Users {!! getBadgeFor($inactiveUsers) !!}</span>
   </a>
   <ul class="sidenav-second-level collapse" id="collapseUsers">
     <li> <a href="{{ route('user.index') }}">All Users</a> </li>
     <li> <a href="{{ route('user.active') }}">Acitve Users</a> </li>
-    <li> <a href="{{ route('user.inactive') }}">Inactive Users</a> </li>
+    <li> <a href="{{ route('user.inactive') }}">Inactive Users {!! getBadgeFor($inactiveUsers) !!}</a> </li>
+    <li> <a href="{{ route('user.freeze') }}">Freeze Users</a> </li>
     <li> <a href="{{ route('user.create') }}">Create New</a> </li>
   </ul>
 </li>
