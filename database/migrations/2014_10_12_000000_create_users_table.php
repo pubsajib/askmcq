@@ -17,10 +17,8 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('education')->nullable();
-            $table->string('institution')->nullable();
-            $table->integer('exp_years')->unsigned()->nullable();
-            $table->string('exp_type')->nullable();
+            $table->string('image')->nullable();
+            $table->text('bio')->nullable();
             $table->integer('user_type')->unsigned()->default(0);
             $table->enum('is_active', ['', '0', '1'])->default('')->comment('""=>never activated, 0=>inactive & 1=>active');
             $table->timestamp('email_verified_at')->nullable();

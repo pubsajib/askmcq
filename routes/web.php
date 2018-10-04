@@ -26,6 +26,6 @@ Route::get('profile/{profile}', 'UserController@profile')->name('profile')->midd
 Route::get('/role', 'RoleController@index')->name('role.index')->middleware('roles:admin');
 Route::post('/role/{role}', 'RoleController@update')->name('role.update')->middleware('roles:admin');
 
-Route::get('/', function () { return view('welcome'); });
 Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', function () { return view('welcome'); });

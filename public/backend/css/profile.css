@@ -1,0 +1,92 @@
+/*-------------------------------
+Profile
+-------------------------------*/
+.single-profile {
+	background-color: #f8462e;
+	background-repeat: repeat;
+	background-size: cover;
+	padding: 50px 0 10px;
+	min-height: 375px;
+	font-size: 18px;
+	color: #fff;
+}
+
+.single-profile .profile-image {
+	text-align: center;
+}
+
+.single-profile .profile-image img {
+	border-radius: 50%;
+	max-height: 270px;
+	width: auto; 
+}
+
+.single-profile .profile-info .name {
+	margin-bottom: 20px;
+	font-weight: 500;
+	font-size: 30px;
+}
+
+.single-profile .profile-info .name .verify {
+    background: #0a81d1;
+    font-size: 12px;
+    font-weight: 300;
+    padding: 7px 10px;
+    border-radius: 30px;
+    position: relative;
+    top: -6px;
+    left: 10px;
+}
+
+.single-profile .profile-info .name .verify .fa {
+	font-size: 14px;
+}
+
+.single-profile .profile-info .bio {
+	font-size: 18px;
+	margin-bottom: 20px;
+}
+
+.single-profile .profile-info .view span {
+	margin-right: 7px;
+}
+
+.single-profile .profile-info .follow .btn {
+	font-size: 18px;
+	padding: 7px 40px;
+	box-shadow: 0 0 1px #454545;
+}
+
+.single-profile .profile-info .option {
+	margin-top: 40px;
+}
+
+.single-profile .profile-info .option li {
+	display: inline-block;
+	margin-right: 25px;
+	line-height: 45px;
+}
+
+.single-profile .profile-info .option li a {
+	font-size: 20px;
+	font-weight: 700;
+	display: block;
+	border-bottom: 3px solid transparent;
+	color: #eeaca5;
+}
+
+.single-profile .profile-info .option li.active a,
+.single-profile .profile-info .option li a:hover {
+	border-bottom: 3px solid #fff;
+	color: #fff;
+	text-decoration: none;
+}
+.btn-theme {
+	background: #fb4f14;
+	color: #fff;
+}
+
+.btn-theme:hover {
+	background: #b6b6b6;
+	color: #fff;
+}

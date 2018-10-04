@@ -18,24 +18,15 @@
 							<input type="email" name="email" class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="">Education</label>
-							<input type="text" name="education" class="form-control">
-						</div>
-						<div class="form-group">
-							<label for="">Institution</label>
-							<input type="text" name="institution" class="form-control">
-						</div>
-						<div class="form-group">
-							<label for="">Years of experience</label>
-							<input type="text" name="exp_years" class="form-control">
-						</div>
-						<div class="form-group">
-							<label for="">Type of experience</label>
-							<input type="text" name="exp_type" class="form-control">
+							<label for="">BIO</label>
+							<textarea name="bio" class="form-control" rows="3"></textarea>
 						</div>
 					</div>
 					<div class="col-sm-6">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores saepe repudiandae, numquam cumque, qui distinctio est placeat delectus! Facilis minus dolorum cum molestiae odit ad sint vero libero voluptatum est.
+						<div class="form-group">
+							<label for="">Type of experience</label>
+							<input type="file" name="image" class="form-control">
+						</div>
 					</div>
 					<div class="col-sm-12 text-right">
 						<button type="submit" class="btn btn-primary">Submit</button>

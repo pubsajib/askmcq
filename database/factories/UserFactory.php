@@ -17,10 +17,8 @@ $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'education' => rand(1,4),
-        'institution' => $faker->name . ' college',
-        'exp_years' => rand(1,4),
-        'exp_type' => $faker->name,
+        'bio' => $faker->text,
+        'image' => $faker->image(public_path('images'), 270, 270, 'cats', false),
         'is_active' => '1',
         'email_verified_at' => date('Y-m-d H:i:s', time()),
         'password' => bcrypt('123456'), // secret

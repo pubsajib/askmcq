@@ -21,10 +21,8 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Education</th>
-                        <th>Institution</th>
-                        <th>Field of Experience</th>
-                        <th>Experience</th>
+                        <th>Email</th>
+                        <th>BIO</th>
                         <th class="text-center" style="width: 125px;">Action</th>
                     </tr>
                 </thead>
@@ -32,10 +30,8 @@
                     @foreach ($users as $user)
                     <tr>
                         <td> <a href="{{ route('user.show', $user) }}">{{ $user->name }}</a> </td>
-                        <td> {{ $user->education }}</td>
-                        <td> {{ $user->institution }}</td>
-                        <td> {{ $user->exp_type }}</td>
-                        <td> {{ $user->exp_years }}</td>
+                        <td> {{ $user->email }}</td>
+                        <td> {{ $user->bio }}</td>
                         <td style="text-align: center;">
                             <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-dark" title="Edit"><i class="fa fa-edit"></i></a>
                             @if ($user->is_active == 1)
@@ -50,10 +46,8 @@
                 <tfoot>
                     <tr>
                         <th>Name</th>
-                        <th>Education</th>
-                        <th>Institution</th>
-                        <th>Field of Experience</th>
-                        <th>Experience</th>
+                        <th>Email</th>
+                        <th>BIO</th>
                         <th class="text-center" style="width: 125px;">Action</th>
                     </tr>
                 </tfoot>

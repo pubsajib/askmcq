@@ -35,6 +35,8 @@ class UserController extends Controller {
 
     public function show($id) {
         $user = User::where('id', $id)->first();
+        $roles = ['editor', 'admin'];
+        $user->verified = $user->hasAnyRole($roles);
         return view('users.show')->withUser($user);
     }
 
@@ -47,20 +49,25 @@ class UserController extends Controller {
         $request->validate([
             'name' => 'required',
             'email' => 'required|unique:users,email',
-            'education' => 'required',
-            'institution' => 'required|min:3',
-            'exp_years' => 'required|integer',
-            'exp_type' => 'required',
+            'bio' => 'required',
+            'image' => 'sometimes|image|mimes:jpeg,png,gif,svg|max:1024',
         ]);
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->education = $request->education;
-        $user->institution = $request->institution;
-        $user->exp_years = $request->exp_years;
-        $user->exp_type = $request->exp_type;
+        $user->bio = $request->bio;
         $user->password = bcrypt('123456');
         $user->email_verified_at = date('Y-m-d');
+
+        // image
+        if ( $request->hasFile('image') ) {
+            $image = $request->file('image');
+            // dd($image->getClientOriginalName());
+            $fileName = 'user-'. time() .'.'. $image->getClientOriginalExtension();
+            $location = public_path('images/users/'. $fileName);
+            $image->move($location, $fileName);
+            $user->image    = $fileName;
+        }
 
         $user->save();
         Session::flash('success', 'User added successfully.');
@@ -72,20 +79,6 @@ class UserController extends Controller {
         return view('users.edit')->withUser($user);
     }
 
-    public function updateStaush(Request $request, $id) {
-        $data = [];
-        $user = User::find($id);
-        if ($user) {
-            $user->is_active  = $request->is_active;
-            $user->save();
-            $data['status'] = 200;
-            $data['message'] = 'Updated successfully.';
-            return json_encode($data);
-        }
-        $data['status'] = 400;
-        $data['message'] = 'Update failed.';
-        return json_encode($data);
-    }
     public function update(Request $request, $id) {
         $user = User::find($id);
 
@@ -93,8 +86,8 @@ class UserController extends Controller {
         $request->validate([
             'fname' => 'required|min:2',
             'email' => "required|email|unique:users,email,$id",
-            'lname' => 'sometimes|min:2'
-            // 'image' => 'sometimes|image'
+            'lname' => 'sometimes|min:2',
+            'image' => 'sometimes|image'
         ]);
 
         // image
@@ -102,7 +95,7 @@ class UserController extends Controller {
             $image = $request->file('image');
             // dd($image->getClientOriginalName());
             $fileName = 'user-'. time() .'.'. $image->getClientOriginalExtension();
-            $location = public_path('images/'. $fileName);
+            $location = public_path('images/users/'. $fileName);
             Image::make($image)->resize(300, 300)->save($location);
             File::delete('images/'.$user->image);
             $user->image    = $fileName;
@@ -121,6 +114,20 @@ class UserController extends Controller {
 
         // Redirect
         //return redirect()->route('user.show', $user->id);
+    }
+    public function updateStaush(Request $request, $id) {
+        $data = [];
+        $user = User::find($id);
+        if ($user) {
+            $user->is_active  = $request->is_active;
+            $user->save();
+            $data['status'] = 200;
+            $data['message'] = 'Updated successfully.';
+            return json_encode($data);
+        }
+        $data['status'] = 400;
+        $data['message'] = 'Update failed.';
+        return json_encode($data);
     }
     public function destroy($id) {
         dd('destroy user');
