@@ -20,6 +20,7 @@
                 </div>
                 <form action="{{ route('login') }}" method="POST">
                     @csrf
+                    <input type="hidden" name="userLogin" value="1">
                     <p><input id="email" type="email" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}" autofocus/></p>
                     <p><input type="password" class="form-control" name="password" placeholder="Password" /></p>
                     <p><button type="submit" href="#" class="btn btn-theme md block radius">Login &nbsp;&nbsp;&nbsp; <span class="fa fa-long-arrow-right"></span></button></p>

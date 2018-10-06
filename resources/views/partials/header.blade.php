@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-sm-2">
                     <div class="logo">
-                        <a href="index.html"><img src="images/logo/site-logo.png" alt="Logo" /></a>
+                        <a href="{{ url('/') }}"><img src="images/logo/site-logo.png" alt="Logo" /></a>
                     </div>
                 </div>
                 <div class="col-sm-2">
@@ -46,8 +46,12 @@
 
                 <div class="col-sm-3">              
                     <div class="header-user text-right me">
-                        <a href="#" class="btn btn-theme-border pill" data-toggle="modal" data-target="#login">Login</a>
-                        <a href="#" class="btn btn-theme-border pill" data-toggle="modal" data-target="#signup">Sign up</a>
+                        @if (Auth::check())
+                            <a href="{{ route('admin.logout') }}" class="btn btn-theme-border pill">Log out</a>
+                        @else
+                            <a href="#" class="btn btn-theme-border pill" data-toggle="modal" data-target="#login">Login</a>
+                            <a href="#" class="btn btn-theme-border pill" data-toggle="modal" data-target="#signup">Sign up</a>
+                        @endif
                     </div>
                 </div>
             </div>

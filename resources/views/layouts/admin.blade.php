@@ -20,7 +20,7 @@
   <div id="App" class="wrapper">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top" id="mainNav">
-      <a class="navbar-brand" href="{{ url('/admin') }}">{{ config('app.name', 'Laravel') }}</a>
+      <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

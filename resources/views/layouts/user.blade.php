@@ -14,7 +14,8 @@
 </head>
 <body>
     @include('partials/header')
-
+    @yield('content')
+        @include('partials/message')
     <!-- Main Wrapper -->
     <div class="wrapper no-padding">
         @include('partials/banner')

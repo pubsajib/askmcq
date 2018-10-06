@@ -31,6 +31,6 @@ class AdminController extends Controller
     {
         // logout current user
         Auth::logout();
-        return redirect()->route('dashboard');
+        return redirect('/');
     }
 }
