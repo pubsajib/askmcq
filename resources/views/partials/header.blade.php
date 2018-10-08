@@ -48,6 +48,7 @@
                     <div class="header-user text-right me">
                         @if (Auth::check())
                             <a href="{{ route('admin.logout') }}" class="btn btn-theme-border pill">Log out</a>
+                            <a href="{{ route('user.profile') }}" class="btn btn-theme-border pill">My account</a>
                         @else
                             <a href="#" class="btn btn-theme-border pill" data-toggle="modal" data-target="#login">Login</a>
                             <a href="#" class="btn btn-theme-border pill" data-toggle="modal" data-target="#signup">Sign up</a>

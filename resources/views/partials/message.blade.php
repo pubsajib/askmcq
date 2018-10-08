@@ -1,7 +1,17 @@
+{{-- @php
+	Session::flash('success', 'The message')
+@endphp --}}
 @if (Session::has('success'))
 	<div class="alert alert-success">
-	  <strong>Success!</strong> {{ Session::get('success') }}
+	  {{ Session::get('success') }}
 	</div>
+	<script>
+		jQuery(function($) {
+			setTimeout(function() {
+				$('.alert-success').hide(500);
+			}, 2000);
+		});
+	</script>
 @endif
 
 @if (Session::has('error'))
@@ -11,7 +21,13 @@
 		  	<li>{{ Session::get('error') }}</li>
 		  </ul>
 	</div>
-	</div>
+	<script>
+		jQuery(function($) {
+			setTimeout(function() {
+				$('.alert-danger').hide(500);
+			}, 2000);
+		});
+	</script>
 @endif
 
 @if ( count($errors) > 0 )
@@ -23,4 +39,11 @@
 		  @endforeach
 		  </ul>
 	</div>
+	<script>
+		jQuery(function($) {
+			setTimeout(function() {
+				$('.alert-danger').hide(500);
+			}, 4000);
+		});
+	</script>
 @endif

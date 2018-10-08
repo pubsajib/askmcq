@@ -31,10 +31,10 @@
                 <div class="others-option">
                     <div class="row">
                         <div class="col-9 col-sm-6">
-                            <p><a href="#">Already have an account ?</a></p>
+                            <p><a href="javascript:;" @click="loadLoginModal">Already have an account ?</a></p>
                         </div>
                         <div class="col-3 col-sm-6">
-                            <p class="text-right"><a href="#"><strong>Login</strong></a></p>
+                            <p class="text-right"><a href="javascript:;" @click="loadLoginModal"><strong>Login</strong></a></p>
                         </div>
                     </div><br>
 

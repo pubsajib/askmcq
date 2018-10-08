@@ -21,7 +21,7 @@
                 <form action="{{ route('login') }}" method="POST">
                     @csrf
                     <input type="hidden" name="userLogin" value="1">
-                    <p><input id="email" type="email" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}" autofocus/></p>
+                    <p><input id="email" type="email" class="form-control" name="email" placeholder="Email" autofocus/></p>
                     <p><input type="password" class="form-control" name="password" placeholder="Password" /></p>
                     <p><button type="submit" href="#" class="btn btn-theme md block radius">Login &nbsp;&nbsp;&nbsp; <span class="fa fa-long-arrow-right"></span></button></p>
                 </form>
@@ -29,10 +29,10 @@
                 <div class="others-option">
                     <div class="row">
                         <div class="col-8 col-sm-6">
-                            <p><a href="{{ route('password.request') }}">Forgot the password ?</a></p>
+                            <p><a href="javascript:;" @click="showRequestPassword">Forgot the password ?</a></p>
                         </div>
                         <div class="col-4 col-sm-6">
-                            <p class="text-right"><a href="#"><strong>Create account</strong></a></p>
+                            <p class="text-right"><a href="javascript:;" @click="loadRegistrationModal"><strong>Create account</strong></a></p>
                         </div>
                     </div><br>
 

@@ -4,6 +4,10 @@
 @endsection
 
 @section('content')
+	@include('partials/banner')
+            @include('partials/services')
+            @include('partials/questions')
+            @include('partials/collections')
 	@if (Auth::check())
 		{{-- expr --}}
 	@endif

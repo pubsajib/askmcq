@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-
+use Session;
 class LoginController extends Controller
 {
     /*
@@ -41,8 +41,9 @@ class LoginController extends Controller
     protected function sendLoginResponse(Request $request) {
         $request->session()->regenerate();
         $this->clearLoginAttempts($request);
+        Session::flash('success', 'Logged in.');
         if ($request->userLogin) {
-            return $this->authenticated($request, $this->guard()->user()) ?: redirect('/');
+            return $this->authenticated($request, $this->guard()->user()) ?: redirect()->route('user.profile');
         } else {
             return $this->authenticated($request, $this->guard()->user()) ?: redirect()->intended($this->redirectPath());
         }

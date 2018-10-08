@@ -10,31 +10,59 @@
     <link href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
     @yield('styles')
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 </head>
 <body>
-    @include('partials/header')
-    @yield('content')
-        @include('partials/message')
-    <!-- Main Wrapper -->
-    <div class="wrapper no-padding">
-        @include('partials/banner')
-        @include('partials/services')
-        @include('partials/questions')
-        @include('partials/collections')
-        
-    </div><!-- Main Wrapper -->
-    @include('partials/footer')
-    @include('partials/modal-login')
-    @include('partials/modal-register')
+    @include('partials/message')
+    <div id="app">
+        @include('partials/header')
+        <!-- Main Wrapper -->
+        <div class="wrapper no-padding">
+            @yield('content')
+        </div><!-- Main Wrapper -->
+        @include('partials/footer')
+        @include('partials/modal-login')
+        @include('partials/modal-register')
+        @include('partials/modal-reset_password')
+        @include('partials/modal-request_password')
+    </div>
     
     <!-- jQuery -->
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery/jquery-migrate-1.2.1.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/jquery.hashchange.min.js') }}"></script>
     <script src="{{ asset('js/jquery.easytabs.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+
+    <script src="{{ asset('js/vue.js') }}"></script>
+    <script src="{{ asset('js/axios.js') }}"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {},
+            methods : {
+                loadRegistrationModal(){
+                    $('#login').modal('hide');
+                    $('#signup').modal('show');
+                },
+                loadLoginModal(){
+                    $('#signup').modal('hide');
+                    $('#login').modal('show');
+                },
+                showResetPassword(){
+                    $('#login').modal('hide');
+                    $('#reset_password').modal('show');
+                },
+                showRequestPassword(){
+                    $('#login').modal('hide');
+                    $('#request_password').modal('show');
+                },
+            }
+        });
+    </script>
     @yield('scripts')
 </body>
 </html>

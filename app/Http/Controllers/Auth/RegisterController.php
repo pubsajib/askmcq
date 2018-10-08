@@ -71,12 +71,12 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
-    public function regissdfter(Request $request) {
+    public function register(Request $request) {
         $this->validator($request->all())->validate();
         event(new Registered($user = $this->create($request->all())));
 
         $this->guard()->login($user);
-        Session::flash('success', 'User added successfully.');
+        Session::flash('success', 'User added successfully. Please check you email for varification.');
         return $this->registered($request, $user)
                         ?: redirect('/');
     }

@@ -129,10 +129,12 @@ class UserController extends Controller {
         $data['message'] = 'Update failed.';
         return json_encode($data);
     }
+    public function profile() {
+        $user = Auth()->user();
+        // dd('profilePage', $user);
+        return view('users.profile', compact($user));
+    }
     public function destroy($id) {
         dd('destroy user');
-    }
-    public function profile($id) {
-        dd('profilePage');
     }
 }

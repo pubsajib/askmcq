@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Session;
 
 class AdminController extends Controller
 {
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('auth');
     }
 
@@ -23,14 +23,12 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         return view('admin.dashboard');
     }
-    public function logout()
-    {
-        // logout current user
+    public function logout() {
         Auth::logout();
+        Session::flash('success', 'Logged Out');
         return redirect('/');
     }
 }
