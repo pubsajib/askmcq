@@ -9,7 +9,7 @@
 		jQuery(function($) {
 			setTimeout(function() {
 				$('.alert-success').hide(500);
-			}, 2000);
+			}, 5000);
 		});
 	</script>
 @endif
@@ -25,7 +25,7 @@
 		jQuery(function($) {
 			setTimeout(function() {
 				$('.alert-danger').hide(500);
-			}, 2000);
+			}, 5000);
 		});
 	</script>
 @endif
@@ -43,7 +43,7 @@
 		jQuery(function($) {
 			setTimeout(function() {
 				$('.alert-danger').hide(500);
-			}, 4000);
+			}, 10000);
 		});
 	</script>
 @endif

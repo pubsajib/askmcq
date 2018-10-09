@@ -25,8 +25,10 @@
         @include('partials/footer')
         @include('partials/modal-login')
         @include('partials/modal-register')
-        @include('partials/modal-reset_password')
         @include('partials/modal-request_password')
+        @isset ($token)
+        @include('partials/modal-reset_password')
+        @endisset
     </div>
     
     <!-- jQuery -->
@@ -39,6 +41,12 @@
 
     <script src="{{ asset('js/vue.js') }}"></script>
     <script src="{{ asset('js/axios.js') }}"></script>
+    <script>
+        jQuery(function($) {
+            @isset ($token) $('#reset_password').modal('show'); @endisset
+            @if (session('loginModal')) $('#login').modal('show'); @endif
+        });
+    </script>
     <script>
         new Vue({
             el: '#app',

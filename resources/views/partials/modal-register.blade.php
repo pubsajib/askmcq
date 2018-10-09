@@ -21,10 +21,10 @@
                 <form action="{{ route('register') }}" method="POST">
                     @csrf
                     <input type="hidden" name="userLogin" value="true">
-                    <p><input type="text" class="form-control" name="name" value="Full Name" /></p>
-                    <p><input type="email" class="form-control" name="email" value="Email@example.com" /></p>
-                    <p><input type="password" class="form-control" name="password" value="Password" /></p>
-                    <p><input type="password" class="form-control" name="password_confirmation" value="Password" /></p>
+                    <p><input type="text" class="form-control" name="name" placeholder="Full Name" /></p>
+                    <p><input type="email" class="form-control" name="email" placeholder="Email" /></p>
+                    <p><input type="password" class="form-control" name="password" placeholder="Password" /></p>
+                    <p><input type="password" class="form-control" name="password_confirmation" placeholder="Confirm password" /></p>
                     <p><button type="submit" class="btn btn-theme md block radius">Create Account &nbsp;&nbsp;&nbsp; <span class="fa fa-long-arrow-right"></span></button></p>
                 </form>
 

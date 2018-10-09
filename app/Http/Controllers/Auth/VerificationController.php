@@ -28,7 +28,7 @@ class VerificationController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/user-profile';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -48,6 +48,7 @@ class VerificationController extends Controller
             event(new Verified($request->user()));
         }
         Session::flash('success', 'Verified successfully.');
-        return redirect($this->redirectPath());
+        Session::flash('loginModal', 1);
+        return redirect('/');
     }
 }
