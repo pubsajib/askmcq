@@ -1,7 +1,13 @@
+button{ cursor: pointer;}
 .alert-success,
 .alert-danger {
     position: absolute;
     right: 20px;
     top: 18px;
     box-shadow: 2px 3px 7px 1px #d5d5d5;
+}
+.alert-askmcq{
+	background: #fb4f14;
+    color: #fff;
+    border-radius: 0;
 }

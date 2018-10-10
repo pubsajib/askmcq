@@ -1,6 +1,13 @@
-{{-- @php
-	Session::flash('success', 'The message')
-@endphp --}}
+{{-- @php Session::flash('alert', 'Verified successfully.'); @endphp --}}
+@if (Session::has('alert'))
+	<div class="alert text-center alert-askmcq alert-dismissible fade show" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	  {{ Session::get('alert') }}
+	</div>
+	
+@endif
 @if (Session::has('success'))
 	<div class="alert alert-success">
 	  {{ Session::get('success') }}
