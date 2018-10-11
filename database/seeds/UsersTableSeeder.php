@@ -69,6 +69,6 @@ class UsersTableSeeder extends Seeder
                 'updated_at'        => date("Y-m-d h:i:s")
             ]
         ]);
-        factory('App\User', 10)->create();
+        //factory('App\User', 10)->create();
     }
 }

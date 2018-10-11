@@ -1,4 +1,4 @@
-{{-- @php Session::flash('alert', 'Verified successfully.'); @endphp --}}
+{{-- @php Session::flash('success', 'Verified successfully.'); @endphp --}}
 @if (Session::has('alert'))
 	<div class="alert text-center alert-askmcq alert-dismissible fade show" role="alert">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">

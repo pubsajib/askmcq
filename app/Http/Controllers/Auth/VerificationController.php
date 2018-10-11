@@ -37,22 +37,15 @@ class VerificationController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
-    public function verify(Request $request)
-    {
-        
-        // dd($request->route('id'));
-        // // dd(date('d-m-Y H:i:s', '1539178678'));
-        // dd($request->user()->getKey());
-        // dd($request->user()->markEmailAsVerified());
-        // if ($request->route('id') == $request->user()->getKey() &&
-        //     $request->user()->markEmailAsVerified()) {
-        //     event(new Verified($request->user()));
-        // }
+    public function verify(Request $request) {
+        if ($request->route('id') == $request->user()->getKey() &&
+            $request->user()->markEmailAsVerified()) {
             event(new Verified($request->user()));
+        }
         Session::flash('alert', 'Verified successfully.');
         // Session::flash('loginModal', 1);
         return redirect('/');

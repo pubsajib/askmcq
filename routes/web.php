@@ -26,6 +26,8 @@ Route::get('profile/{profile}', 'UserController@profile')->name('profile')->midd
 // Role routes
 Route::get('/role', 'RoleController@index')->name('role.index')->middleware('roles:admin');
 Route::post('/role/{role}', 'RoleController@update')->name('role.update')->middleware('roles:admin');
+// CATEGORIES
+Route::resource('category', 'CategoryController');
 
 Auth::routes(['verify' => true]);
 Route::get('{emailVerify}', 'Auth\VerificationController@showLoginModal')->name('emailvarification');

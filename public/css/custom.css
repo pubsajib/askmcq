@@ -1,4 +1,7 @@
 button{ cursor: pointer;}
+.alert{
+	z-index: 9;
+}
 .alert-success,
 .alert-danger {
     position: absolute;
