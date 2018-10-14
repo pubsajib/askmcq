@@ -29,10 +29,16 @@ class Category extends Model {
     	return $categories;
     }
     public static function subCategories($category) {
-    	$categories = DB::table('categories')->where('parent', $category);
-    	dd($categories);
+        $subCats = Category::where('parent', $category->id)->get();
+        if (!$subCats->isEmpty()) return $subCats;
+        return false;
     }
-    function parentCategory($category) {
+    public static function hasSubCategories($category) {
+        $subCats = Category::where('parent', $category->id)->get();
+        if (!$subCats->isEmpty()) return true;
+        return false;
+    }
+    public function parentCategory($category) {
     	
     }
 }

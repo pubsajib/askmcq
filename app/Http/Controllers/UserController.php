@@ -84,10 +84,10 @@ class UserController extends Controller {
 
         // validation
         $request->validate([
-            'fname' => 'required|min:2',
+            'name'  => 'required|min:2',
             'email' => "required|email|unique:users,email,$id",
-            'lname' => 'sometimes|min:2',
-            'image' => 'sometimes|image'
+            // 'bio'   => 'sometimes|min:2',
+            // 'image' => 'sometimes|image'
         ]);
 
         // image
@@ -102,18 +102,14 @@ class UserController extends Controller {
         }
 
         // save
-        $user->fname    = $request->fname;
-        $user->lname    = $request->lname;
+        $user->name     = $request->name;
         $user->email    = $request->email;
-        $user->city     = $request->city;
-        $user->state    = $request->state;
-        $user->zip      = $request->zip;
-        $user->country  = $request->country;
+        $user->bio      = $request->bio;
 
         $user->save();
 
         // Redirect
-        //return redirect()->route('user.show', $user->id);
+        return redirect()->route('user.show', $user->id);
     }
     public function updateStaush(Request $request, $id) {
         $data = [];
@@ -136,5 +132,7 @@ class UserController extends Controller {
     }
     public function destroy($id) {
         dd('destroy user');
+        $user = User::find($id);    
+        $user->delete();
     }
 }

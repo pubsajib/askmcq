@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'User')
+@section('title', 'Categories')
 @section('styles')
     <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
 @endsection
@@ -20,11 +20,11 @@
                     @foreach ($categories as $category)
                         <tr>
                             <td>{{ $catCounter }}</td>
-                            <td> <a href="{{ route('category.show', 1) }}">{{ $category['name'] }}</a> </td>
+                            <td> <a href="{{ route('category.show', $category['id']) }}">{{ $category['name'] }}</a> </td>
                             <td> {{ $category['description'] }}</td>
                             <td style="text-align: center;">
                                 <a href="{{ route('category.edit', $category['id']) }}" class="btn btn-sm btn-dark" title="Edit"><i class="fa fa-edit"></i></a>
-                                <a class="btn btn-sm btn-danger" title="Delete"><i class="fa fa-times-circle"></i></a>
+                                <a @click="deleteCat({{ $category['id'] }})" class="btn btn-sm btn-danger" title="Delete"><i class="fa fa-times-circle"></i></a>
                             </td>
                         </tr>
                         @if ($category['subCategories'])
@@ -36,7 +36,7 @@
                                     <td> {{ $subCategory['description'] }}</td>
                                     <td style="text-align: center;">
                                         <a href="{{ route('category.edit', $subCategory['id']) }}" class="btn btn-sm btn-dark" title="Edit"><i class="fa fa-edit"></i></a>
-                                        <a class="btn btn-sm btn-danger" title="Delete"><i class="fa fa-times-circle"></i></a>
+                                        <a @click="deleteCat({{ $subCategory['id'] }})" class="btn btn-sm btn-danger" title="Delete"><i class="fa fa-times-circle"></i></a>
                                     </td>
                                 </tr>
                                 @php ($subCatCounter ++)
@@ -69,31 +69,23 @@
             el: '#App',
             data(){
                 return {
-                    path:"{!! url('/user-status') !!}",
-                    updateUrl: function(id){ return this.path +'/'+ id },
+                    path:"{!! url('/category') !!}",
+                    deleteUrl: function(id){ return this.path +'/'+ id },
                 }
             },
             methods: {
-                deactivateUser(user){
-                    var updateUrl = this.updateUrl(user);
-                    axios.put(updateUrl, {is_active: '0'})
+                deleteCat(category){
+                    var deleteUrl = this.deleteUrl(category);
+                    // alert(category +' === '+ deleteUrl); return false;
+                    axios.delete(deleteUrl, {category: category})
                     .then(function(response) {
+                        // console.log(response.data);
                         window.location.reload();
                     })
                     .catch(function(error) {
                         console.log(error);
                     });
-                },
-                activateUser(user){
-                    var updateUrl = this.updateUrl(user);
-                    axios.put(updateUrl, {is_active: '1'})
-                    .then(function(response) {
-                        window.location.reload();
-                    })
-                    .catch(function(error) {
-                        console.log(error);
-                    });
-                },
+                }
             }
         });
     </script>

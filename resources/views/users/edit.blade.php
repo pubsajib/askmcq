@@ -1,12 +1,13 @@
 @extends('layouts.admin')
-@section('title', 'Create New')
+@section('title', 'Edit user')
 @section('styles')
 @endsection
 @section('content')
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			<form action="{{ route('user.update', $user->id) }}" method="PUT" role="form" enctype="multipart/form-data">
-				{{ csrf_field() }}
+			<form action="{{ route('user.update', $user->id) }}" method="post" role="form" enctype="multipart/form-data">
+				@method('PATCH')
+        		@csrf
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">

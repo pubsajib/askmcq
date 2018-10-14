@@ -12,6 +12,7 @@
   <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('backend/css/sb-admin.css') }}" rel="stylesheet">
+  <style>.btn{cursor: pointer;}</style>
   @yield('styles')
   <link href="{{ asset('backend/css/app.css') }}" rel="stylesheet">
 </head>
