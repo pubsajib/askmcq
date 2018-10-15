@@ -5,7 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 class Category extends Model {
-    function questions() {}
+    public function groups() {
+        return $this->belongsTo('App\Group');
+    }
     public static function categories() {
     	$categories = [];
     	$cats = Category::where('parent', 0)->get();

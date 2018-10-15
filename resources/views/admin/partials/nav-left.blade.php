@@ -29,6 +29,17 @@
     <span class="nav-link-text">User Role</span>
   </a>
 </li>
+{{-- GROUPS --}}
+<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+  <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseGroups">
+    <i class="fa fa-fw fa-users"></i>
+    <span class="nav-link-text">Groups</span>
+  </a>
+  <ul class="sidenav-second-level collapse" id="collapseGroups">
+    <li> <a href="{{ route('group.index') }}">All Groups</a> </li>
+    <li> <a href="{{ route('group.create') }}">Create New</a> </li>
+  </ul>
+</li>
 {{-- CATEGORIES --}}
 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
   <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseCategories" data-parent="#exampleAccordion">

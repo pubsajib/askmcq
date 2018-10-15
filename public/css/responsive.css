@@ -64,4 +64,75 @@
 		font-weight: 500;
 		font-size: 14px;
 	}
+
+	.services .service-list li {
+		width: 100%;
+	}
+
+	.menu-container .manu ul li .have_dropdown_n_style {
+		margin-bottom: 20px;
+	}
+
+	#menuBarDiv_question-one a,
+	#menuBarDiv_question-two a,
+	#menuBarDiv_question-three a {
+		font-size: 13px;
+	}
+
+	#menuBarDiv_question-one .btn,
+	#menuBarDiv_question-two .btn,
+	#menuBarDiv_question-three .btn { 
+		padding: 5px;
+	}
+
+	.Editor-editor {
+		height: 150px;
+	}
+
+	.service-category li {
+		width: 100%;
+	}
+
+	.question-submit .tab-container .etabs .tab {
+		width: 100%;
+		margin-bottom: 10px;
+	}
+
+	.breadcrumb {
+		display: none;
+	}
+}
+
+@media only (max-width: 756px) {
+	.menu-container .manu ul li{
+		float: none;
+		display: block;
+	}
+	.menu-container .manu ul li .have_dropdown{
+		background-color:transparent;
+		display: none;
+		position: relative;
+	}
+	.menu-container .manu ul li .have_dropdown li{
+		display: block;
+		float: none;
+		width: 100%;
+		background-color: #fff;
+	}
+	.menu-container .manu ul li .have_dropdown li a{
+		display: block;
+		float: none;
+		width: 100%;
+		padding: 15px 0px;
+	}
+	.menu-container .manu ul li .have_dropdown_n_style li{
+		width:100%;
+		float: none;
+	}
+	.menu-container .manu ul li .have_dropdown_n_style li a{
+		float: none;
+	}
+	.menu-container .manu ul li .have_dropdown_n_style{
+		position: relative;
+	}
 }

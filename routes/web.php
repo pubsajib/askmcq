@@ -28,6 +28,8 @@ Route::get('/role', 'RoleController@index')->name('role.index')->middleware('rol
 Route::post('/role/{role}', 'RoleController@update')->name('role.update')->middleware('roles:admin');
 // CATEGORIES
 Route::resource('category', 'CategoryController');
+// GROUPS
+Route::resource('group', 'GroupController');
 
 Auth::routes(['verify' => true]);
 Route::get('{emailVerify}', 'Auth\VerificationController@showLoginModal')->name('emailvarification');
