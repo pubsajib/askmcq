@@ -111,4 +111,7 @@ class CategoryController extends Controller {
         // return json_encode($deleted);
         return $category->id;
     }
+    public function subcategory(Category $category) {
+        return $category;
+    }
 }

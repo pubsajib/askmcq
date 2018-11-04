@@ -28,6 +28,7 @@ Route::get('/role', 'RoleController@index')->name('role.index')->middleware('rol
 Route::post('/role/{role}', 'RoleController@update')->name('role.update')->middleware('roles:admin');
 // CATEGORIES
 Route::resource('category', 'CategoryController');
+Route::get('/subcategory/{category}', 'CategoryController@subcategory')->name('subcategory');
 // GROUPS
 Route::resource('group', 'GroupController');
 
@@ -35,4 +36,4 @@ Auth::routes(['verify' => true]);
 Route::get('{emailVerify}', 'Auth\VerificationController@showLoginModal')->name('emailvarification');
 Route::get('{token}', 'Auth\ResetPasswordController@showResetModal')->name('passwordreset');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', function () { return view('welcome'); });
+Route::get('/', 'HomeController@index')->name('home');

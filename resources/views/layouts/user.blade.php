@@ -68,6 +68,11 @@
                     $('#login').modal('hide');
                     $('#request_password').modal('show');
                 },
+                catModal(catID){
+                    // MAKE AJAX CALL AND FETCH SUB CATEGORIES FOR catID
+                    // axios.get('subcategory', {});
+                    $('#subCategoryModal').modal('show');
+                },
             }
         });
     </script>
