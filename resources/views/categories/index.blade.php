@@ -20,28 +20,13 @@
                     @foreach ($categories as $category)
                         <tr>
                             <td>{{ $catCounter }}</td>
-                            <td> <a href="{{ route('category.show', $category['id']) }}">{{ $category['name'] }}</a> </td>
+                            <td> <a href="{{ route('category.show', $category->id) }}">{{ $category->name }}</a> </td>
                             <td> {{ $category['description'] }}</td>
                             <td style="text-align: center;">
-                                <a href="{{ route('category.edit', $category['id']) }}" class="btn btn-sm btn-dark" title="Edit"><i class="fa fa-edit"></i></a>
-                                <a @click="deleteCat({{ $category['id'] }})" class="btn btn-sm btn-danger" title="Delete"><i class="fa fa-times-circle"></i></a>
+                                <a href="{{ route('category.edit', $category->id) }}" class="btn btn-sm btn-dark" title="Edit"><i class="fa fa-edit"></i></a>
+                                <a @click="deleteCat({{ $category->id }})" class="btn btn-sm btn-danger" title="Delete"><i class="fa fa-times-circle"></i></a>
                             </td>
                         </tr>
-                        @if ($category['subCategories'])
-                            @php ($subCatCounter = 1)
-                            @foreach ($category['subCategories'] as $subCategory)
-                                <tr>
-                                    <td>{{ $catCounter }}.{{ $subCatCounter }}</td>
-                                    <td> <a href="{{ route('category.show', $subCategory['id']) }}"> -- {{ $subCategory['name'] }}</a> </td>
-                                    <td> {{ $subCategory['description'] }}</td>
-                                    <td style="text-align: center;">
-                                        <a href="{{ route('category.edit', $subCategory['id']) }}" class="btn btn-sm btn-dark" title="Edit"><i class="fa fa-edit"></i></a>
-                                        <a @click="deleteCat({{ $subCategory['id'] }})" class="btn btn-sm btn-danger" title="Delete"><i class="fa fa-times-circle"></i></a>
-                                    </td>
-                                </tr>
-                                @php ($subCatCounter ++)
-                            @endforeach    
-                        @endif
                         @php ($catCounter ++)
                     @endforeach
                 </tbody>

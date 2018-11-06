@@ -5,21 +5,13 @@
 @section('content')
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			<form action="{{ route('category.store') }}" method="post" role="form">
+			<form action="{{ route('group.store') }}" method="post" role="form">
         		@csrf
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="">Name</label>
 							<input type="text" name="name" value="" class="form-control">
-						</div>
-						<div class="form-group">
-							<label for="">Parent</label>
-							<select name="parent" class="form-control" required="required">
-								@foreach ($rootCats as $rootCat)
-									<option value="{{ $rootCat->id }}"> {{ $rootCat->name }} </option>
-								@endforeach
-							</select>
 						</div>
 					</div>
 					<div class="col-sm-6">

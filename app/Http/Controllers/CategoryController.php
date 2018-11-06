@@ -1,110 +1,53 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Group;
 use App\Category;
-
 class CategoryController extends Controller {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index() {
-        $categories = Category::categories();
-        return view('categories.index')->withCategories($categories);
+        $categories = Category::with('subCategories')->get();
+        return view('categories.index', compact('categories'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create() {
-        $rootCats = Category::where('parent', '0')->get();
-        return view('categories.create', compact('rootCats'));
+        $groups = Group::All();
+        return view('categories.create', compact('groups'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request) {
         $request->validate([
             'name' => 'required',
-            'parent' => 'nullable',
+            'group' => 'nullable',
         ]);
-
         $category = new Category;
         $category->name = $request->name;
-        $category->parent = $request->parent ? $request->parent : '0';
+        $category->group_id = $request->group ? $request->group : '1';
         $category->description = $request->description;
-
         $category->save();
         return redirect()->route('category.show', $category->id);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id) {
-        $category = Category::find($id);
-        $parentCat = Category::find($category->parent);
-        // dd($parentCat);
-        return view('categories.show', compact('category', 'parentCat'));
+        $category = Category::with('group')->find($id);
+        return view('categories.show', compact('category'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id) {
-        $category = Category::find($id);
-        $hasSubCategories = Category::hasSubCategories($category);
-        $rootCats = Category::where('parent', '0')->get();
-        return view('categories.edit', compact('category', 'rootCats', 'hasSubCategories'));
+        $category = Category::with('group')->find($id);
+        $groups = Group::All();
+        return view('categories.edit', compact('category', 'groups'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id) {
         $category = Category::find($id);
         $request->validate([
             'name' => 'required',
-            'parent' => 'nullable',
+            'group' => 'nullable',
         ]);
         // dd($request->parent);
         $category->name = $request->name;
-        $category->parent = $request->parent ? $request->parent : '0';
+        $category->group_id = $request->group ? $request->group : '1';
         $category->description = $request->description;
-
         $category->save();
-
         return redirect()->route('category.show', $category->id);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Category $category) {
         // DETACH ALL CHILD CATEGORIES IF ANY
-
         // DELETE THE CATEGORY
         // $category = Category::find($id);
         $deleted = $category->delete();
@@ -112,6 +55,7 @@ class CategoryController extends Controller {
         return $category->id;
     }
     public function subcategory(Category $category) {
-        return $category;
+        $subcategory = Category::subCategories($category);
+        return $subcategory;
     }
 }

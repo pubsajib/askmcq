@@ -2,10 +2,10 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Category::class, function (Faker $faker) {
+$factory->define(App\Subcategory::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'group_id' => rand(1,5),
         'description' => $faker->text,
+        'category_id' => rand(1,5),
     ];
 });

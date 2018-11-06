@@ -1,11 +1,11 @@
 @extends('layouts.admin')
-@section('title', 'Groups')
+@section('title', 'Sub Categories')
 @section('styles')
     <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
 @endsection
 @section('content')
     <div class="col-md-12">
-    	@if ($groups)
+    	@if ($subcategories)
             <table id="dataTable" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
@@ -16,18 +16,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @php ($groupCounter = 1)
-                    @foreach ($groups as $group)
+                    @php ($catCounter = 1)
+                    @foreach ($subcategories as $subcategory)
                         <tr>
-                            <td>{{ $groupCounter }}</td>
-                            <td> <a href="{{ route('group.show', $group->id) }}">{{ $group->name }}</a> </td>
-                            <td> {{ $group->description }}</td>
+                            <td>{{ $catCounter }}</td>
+                            <td> <a href="{{ route('subcategory.show', $subcategory->id) }}">{{ $subcategory->name }}</a> </td>
+                            <td> {{ $subcategory['description'] }}</td>
                             <td style="text-align: center;">
-                                <a href="{{ route('group.edit', $group->id) }}" class="btn btn-sm btn-dark" title="Edit"><i class="fa fa-edit"></i></a>
-                                <a @click="deleteGroup({{ $group->id }})" class="btn btn-sm btn-danger" title="Delete"><i class="fa fa-times-circle"></i></a>
+                                <a href="{{ route('subcategory.edit', $subcategory->id) }}" class="btn btn-sm btn-dark" title="Edit"><i class="fa fa-edit"></i></a>
+                                <a @click="deleteCat({{ $subcategory->id }})" class="btn btn-sm btn-danger" title="Delete"><i class="fa fa-times-circle"></i></a>
                             </td>
                         </tr>
-                        @php ($groupCounter ++)
+                        @php ($catCounter ++)
                     @endforeach
                 </tbody>
                 <tfoot>
@@ -54,15 +54,15 @@
             el: '#App',
             data(){
                 return {
-                    path:"{!! url('/group') !!}",
+                    path:"{!! url('/subcategory') !!}",
                     deleteUrl: function(id){ return this.path +'/'+ id },
                 }
             },
             methods: {
-                deleteGroup(group){
-                    var deleteUrl = this.deleteUrl(group);
-                    // alert(group +' === '+ deleteUrl); return false;
-                    axios.delete(deleteUrl, {group: group})
+                deleteCat(subcategory){
+                    var deleteUrl = this.deleteUrl(subcategory);
+                    // alert(subcategory +' === '+ deleteUrl); return false;
+                    axios.delete(deleteUrl, {subcategory: subcategory})
                     .then(function(response) {
                         // console.log(response.data);
                         window.location.reload();

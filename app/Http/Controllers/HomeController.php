@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Group;
 
 class HomeController extends Controller
 {
@@ -23,8 +24,7 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $cats = Category::categories();
-        // dd($cats);
-        return view('welcome', compact('cats'));
+        $groups = Group::with('categories')->get();
+        return view('welcome', compact('groups'));
     }
 }

@@ -50,8 +50,11 @@ h6 {
 img {
 	max-width: 100%;
 }
-input {
+input[type=text] {
 	height: 45px !important;
+}
+input[type=radio] {
+	margin-right: 5px;
 }
 input,
 textarea,

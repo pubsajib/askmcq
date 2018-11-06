@@ -15,10 +15,9 @@
 						</div>
 						<div class="form-group">
 							<label for="">Parent</label>
-							<select name="parent" class="form-control" required="required">
-								<option value="0"> Main </option>
-								@foreach ($rootCats as $rootCat)
-									<option value="{{ $rootCat->id }}"> {{ $rootCat->name }} </option>
+							<select name="group" class="form-control" required="required">
+								@foreach ($groups as $group)
+									<option value="{{ $group->id }}"> {{ $group->name }} </option>
 								@endforeach
 							</select>
 						</div>

@@ -43,14 +43,16 @@
     <script src="{{ asset('js/axios.js') }}"></script>
     <script>
         jQuery(function($) {
-            @isset ($token) $('#reset_password').modal('show'); @endisset
-            @if (session('loginModal')) $('#login').modal('show'); @endif
+            @isset ($token) jQuery('#reset_password').modal('show'); @endisset
+            @if (session('loginModal')) jQuery('#login').modal('show'); @endif
         });
     </script>
     <script>
         new Vue({
             el: '#app',
-            data: {},
+            data: {
+                selectedSubCat : '',
+            },
             methods : {
                 loadRegistrationModal(){
                     $('#login').modal('hide');
@@ -68,11 +70,51 @@
                     $('#login').modal('hide');
                     $('#request_password').modal('show');
                 },
-                catModal(catID){
-                    // MAKE AJAX CALL AND FETCH SUB CATEGORIES FOR catID
-                    // axios.get('subcategory', {});
-                    $('#subCategoryModal').modal('show');
+                groupModal(groupID){
+                    // MAKE AJAX CALL AND FETCH SUB CATEGORIES FOR groupID
+                    var vue = this;
+                    axios.get('api/group/'+ groupID)
+                    .then(function(response) {
+                        // console.log(response.data);
+                        vue.showSubCategoryModal(response.data);
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    });
                 },
+                showSubCategoryModal(data){
+                    var modal = '';
+                    if (!jQuery.isEmptyObject(data.categories)){
+                       data.categories.forEach(function(category) {
+                            if (!jQuery.isEmptyObject(category.subcategories)) {
+                                modal += '<div class="card">';
+                                modal += '<div class="card-header" id="category_'+ category.id +'">'+
+                                        '<h5 class="mb-0">'+
+                                            '<button class="btn cat-block" type="button" data-toggle="collapse" data-target="#catCollapse_'+ category.id +'" aria-expanded="true" aria-controls="catCollapse_'+ category.id +'">'+ category.name +
+                                            '</button>'+
+                                        '</h5>'+
+                                    '</div>';
+                                modal += '<div id="catCollapse_'+ category.id +'" class="collapse" aria-labelledby="headingOne" data-parent="#subcategoryList">'+
+                                    '<div class="card-body">'+
+                                        '<div class="row">';
+                                            category.subcategories.forEach(function(subcategory) {
+                                                var subCatID = 'sub_'+ subcategory.category_id +'_'+ subcategory.id;
+                                                modal += '<div class="col-sm-4">';
+                                                    modal += '<p>'+ 
+                                                            '<label for="'+ subCatID +'"> <input id="'+ subCatID +'" type="radio" name="subcategory" value="'+ subCatID +'" v-model="selectedSubCat" />'+ subcategory.name +'</label>'+
+                                                        '</p> ';
+                                                modal += '</div>';
+                                            });
+                                modal += '</div>'+
+                                    '</div>'+
+                                '</div>';
+                                modal += '</div>';
+                            }
+                       });
+                    }
+                    jQuery('#subcategoryList').html(modal);
+                    if (modal) jQuery('#subCategoryModal').modal('show');
+                }
             }
         });
     </script>

@@ -14,56 +14,56 @@ class CategoriesTableSeeder extends Seeder
         DB::table('categories')->insert([
             [
                 'name'          => 'Uncategorized', 
-                'parent'        => 0, 
+                'group_id'      => rand(1,5), 
                 'description'   => 'Default category', 
                 'created_at'    => date("Y-m-d h:i:s"), 
                 'updated_at'    => date("Y-m-d h:i:s")
             ],
         	[
         		'name' 			=> 'Sports', 
-        		'parent' 		=> 0, 
+        		'group_id' 		=> rand(1,5), 
         		'description' 	=> 'All types of stports goods will be here.', 
         		'created_at' 	=> date("Y-m-d h:i:s"), 
         		'updated_at' 	=> date("Y-m-d h:i:s")
         	],
         	[
         		'name' 			=> 'Electronics', 
-        		'parent' 		=> 0, 
+        		'group_id' 		=> rand(1,5), 
         		'description' 	=> '', 
         		'created_at' 	=> date("Y-m-d h:i:s"), 
         		'updated_at' 	=> date("Y-m-d h:i:s")
         	],
         	[
         		'name' 			=> 'Tools', 
-        		'parent' 		=> 0, 
+        		'group_id' 		=> rand(1,5), 
         		'description' 	=> '', 
         		'created_at' 	=> date("Y-m-d h:i:s"), 
         		'updated_at' 	=> date("Y-m-d h:i:s")
         	],
         	[
         		'name' 			=> 'Interior', 
-        		'parent' 		=> 0, 
+        		'group_id' 		=> rand(1,5), 
         		'description' 	=> '', 
         		'created_at' 	=> date("Y-m-d h:i:s"), 
         		'updated_at' 	=> date("Y-m-d h:i:s")
         	],
         	[
         		'name' 			=> 'Men', 
-        		'parent' 		=> 1, 
+        		'group_id' 		=> rand(1,5), 
         		'description' 	=> '', 
         		'created_at' 	=> date("Y-m-d h:i:s"), 
         		'updated_at' 	=> date("Y-m-d h:i:s")
         	],
         	[
         		'name' 			=> 'Women', 
-        		'parent' 		=> 1, 
+        		'group_id' 		=> rand(1,5), 
         		'description' 	=> '', 
         		'created_at' 	=> date("Y-m-d h:i:s"), 
         		'updated_at' 	=> date("Y-m-d h:i:s")
         	],
         	[
         		'name' 			=> 'Baby', 
-        		'parent' 		=> 2, 
+        		'group_id' 		=> rand(1,5), 
         		'description' 	=> '', 
         		'created_at' 	=> date("Y-m-d h:i:s"), 
         		'updated_at' 	=> date("Y-m-d h:i:s")

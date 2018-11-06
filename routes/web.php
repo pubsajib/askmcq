@@ -28,9 +28,12 @@ Route::get('/role', 'RoleController@index')->name('role.index')->middleware('rol
 Route::post('/role/{role}', 'RoleController@update')->name('role.update')->middleware('roles:admin');
 // CATEGORIES
 Route::resource('category', 'CategoryController');
-Route::get('/subcategory/{category}', 'CategoryController@subcategory')->name('subcategory');
+// SUBCATEGORIES
+Route::resource('subcategory', 'SubcategoryController');
 // GROUPS
 Route::resource('group', 'GroupController');
+// AJAX CALLS
+Route::get('/api/group/{group}', 'GroupController@categories')->name('group.category');
 
 Auth::routes(['verify' => true]);
 Route::get('{emailVerify}', 'Auth\VerificationController@showLoginModal')->name('emailvarification');

@@ -30,7 +30,7 @@
   </a>
 </li>
 {{-- GROUPS --}}
-<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Groups">
   <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseGroups">
     <i class="fa fa-fw fa-users"></i>
     <span class="nav-link-text">Groups</span>
@@ -41,14 +41,25 @@
   </ul>
 </li>
 {{-- CATEGORIES --}}
-<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-  <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseCategories" data-parent="#exampleAccordion">
+<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Categories">
+  <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseCategories">
     <i class="fa fa-fw fa-users"></i>
     <span class="nav-link-text">Categories</span>
   </a>
   <ul class="sidenav-second-level collapse" id="collapseCategories">
     <li> <a href="{{ route('category.index') }}">All Categories</a> </li>
     <li> <a href="{{ route('category.create') }}">Create New</a> </li>
+  </ul>
+</li>
+{{-- SUB CATEGORIES --}}
+<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sub Categories">
+  <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseSubCategories">
+    <i class="fa fa-fw fa-users"></i>
+    <span class="nav-link-text">Sub Categories</span>
+  </a>
+  <ul class="sidenav-second-level collapse" id="collapseSubCategories">
+    <li> <a href="{{ route('subcategory.index') }}">All Sub Categories</a> </li>
+    <li> <a href="{{ route('subcategory.create') }}">Create New</a> </li>
   </ul>
 </li>
 {{-- PROFILE --}}
