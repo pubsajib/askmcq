@@ -12,12 +12,6 @@ class GroupsTableSeeder extends Seeder
     public function run()
     {
         DB::table('groups')->insert([
-            [
-                'name'          => 'Others', 
-                'description'   => 'Default group', 
-                'created_at'    => date("Y-m-d h:i:s"), 
-                'updated_at'    => date("Y-m-d h:i:s")
-            ],
         	[
         		'name' 			=> 'Programming', 
         		'description' 	=> 'All types of programming categories will be here.', 
@@ -43,23 +37,41 @@ class GroupsTableSeeder extends Seeder
         		'updated_at' 	=> date("Y-m-d h:i:s")
         	],
         	[
-        		'name' 			=> 'lorem', 
+        		'name' 			=> 'Tours', 
         		'description' 	=> '', 
         		'created_at' 	=> date("Y-m-d h:i:s"), 
         		'updated_at' 	=> date("Y-m-d h:i:s")
         	],
         	[
-        		'name' 			=> 'Ipsum', 
+        		'name' 			=> 'Travels', 
         		'description' 	=> '', 
         		'created_at' 	=> date("Y-m-d h:i:s"), 
         		'updated_at' 	=> date("Y-m-d h:i:s")
         	],
+            [
+                'name'          => 'Real state', 
+                'description'   => '', 
+                'created_at'    => date("Y-m-d h:i:s"), 
+                'updated_at'    => date("Y-m-d h:i:s")
+            ],
+            [
+                'name'          => 'Developer', 
+                'description'   => '', 
+                'created_at'    => date("Y-m-d h:i:s"), 
+                'updated_at'    => date("Y-m-d h:i:s")
+            ],
         	[
-        		'name' 			=> 'Dolor', 
+        		'name' 			=> 'Rental', 
         		'description' 	=> '', 
         		'created_at' 	=> date("Y-m-d h:i:s"), 
         		'updated_at' 	=> date("Y-m-d h:i:s")
         	],
+            [
+                'name'          => 'Others', 
+                'description'   => 'Default group', 
+                'created_at'    => date("Y-m-d h:i:s"), 
+                'updated_at'    => date("Y-m-d h:i:s")
+            ],
         ]);
     }
 }

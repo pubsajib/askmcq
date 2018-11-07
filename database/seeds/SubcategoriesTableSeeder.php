@@ -10,6 +10,6 @@ class SubcategoriesTableSeeder extends Seeder
      * @return void
      */
     public function run() {
-        factory(App\Subcategory::class, 30)->create();
+        factory(App\Subcategory::class, 130)->create();
     }
 }

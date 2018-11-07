@@ -15,7 +15,7 @@
 							<input type="text" name="name" value="{{ $category->name }}" class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="">Parent</label>
+							<label for="">Group</label>
 							<select name="group" class="form-control" required="required">
 								@foreach ($groups as $group)
 									<option value="{{ $group->id }}" {{ $group->id == $category->group->id ? ' selected ' : '' }}> {{ $group->name }} </option>

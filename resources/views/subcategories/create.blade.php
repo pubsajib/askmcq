@@ -14,7 +14,7 @@
 							<input type="text" name="name" value="" class="form-control">
 						</div>
 						<div class="form-group">
-							<label for="">Parent</label>
+							<label for="">Category</label>
 							<select name="category" class="form-control" required="required">
 								@foreach ($categories as $category)
 									<option value="{{ $category->id }}"> {{ $category->name }} </option>

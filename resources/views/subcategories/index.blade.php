@@ -3,6 +3,9 @@
 @section('styles')
     <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
 @endsection
+@section('breadcrumb')
+    <a href="{{ route('subcategory.create') }}" class="btn btn-sm btn-info pull-right btn-breadcrumb" title="Edit">Add New</a>
+@endsection
 @section('content')
     <div class="col-md-12">
     	@if ($subcategories)
