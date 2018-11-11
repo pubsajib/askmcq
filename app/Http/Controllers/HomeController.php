@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Question;
 use App\Category;
 use App\Group;
 
@@ -15,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -25,6 +26,8 @@ class HomeController extends Controller
      */
     public function index() {
         $groups = Group::with('categories')->get();
-        return view('welcome', compact('groups'));
+        $alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+        $questions = Question::with('user')->get();
+        return view('welcome', compact('groups', 'questions', 'alphabets'));
     }
 }

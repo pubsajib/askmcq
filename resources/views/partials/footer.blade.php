@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="widget">
-                        <a href="index.html"><img src="images/logo/site-logo.png" alt="Footer Logo" /></a>
+                        <a href="{{ url('/') }}"><img src="{{ asset('images/logo/site-logo.png') }}" alt="Footer Logo" /></a>
                     </div>
                     <div class="widget">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at sodales ante, non luctus ligula. Phaseplus dignissim consectetur eros, hendrerit consectetur ligula aliquet mollis. Quisque ipsum leo, posuere eu efficitur et, scelerisque id sapien. Aenean ut est eu dui ultrices scelerisque. Duis consectetur id felis sit amet sollicitudin.</p>

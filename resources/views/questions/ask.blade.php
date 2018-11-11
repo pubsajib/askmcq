@@ -17,7 +17,7 @@
 				    		<li class="tab"><a href="#multi-question" class="btn lg gray">Multi Question<br><img src="images/icon/collaboration.png" alt=""></a></li>
 						</ul>
 						<div id="single-question"> @include('partials/question-single') </div>
-						@include('partials/question-multi')
+						<div id="multi-question"> @include('partials/question-multi') </div>
 					</div>
 				</div>
 			</div>
@@ -34,29 +34,54 @@
 			branding: false,
 			menubar : false,
 			statusbar: false,
+			forced_root_block : "",
 			plugins: [ 'autosave', 'lists', 'autolink', 'link', 'image','code' ],
 			toolbar: 'undo redo | styleselect | bold italic | link unlink image | alignleft aligncenter alignright outdent indent | bullist numlist | code',
 		});
 		jQuery(function() {
+			// TEST DATA
 			var alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-			var options = JSON.parse($('.questionOptions').attr('options'));
-			console.log(typeof options, options);
+			var options = $('.questionOptions').val();
+			// var nextIndex = 0;
+			// console.log(options);
+			// if (options.length > 0) {
+			// 	options = options.split(',');
+			// 	nextIndex = options.length;
+			// }
+			// alert(nextIndex);
+			// console.log(typeof options, options);
+
+
+			$(document).on('change', '.subCategoryRadio', function() {
+				var subcategory = $(this).val();
+				$('.subcategory').val(subcategory);
+				$('#subCategoryModal').modal('hide');
+			});
+
+			$(document).on('change', '.radioOption', function() {
+				var option = $(this).val();
+				$('.optionsAnswer').val(option);
+			});
 			$(document).on('click', '.addNewOption', function() {
 				$('#addOption').modal('show');
 			});
 			$(document).on('submit', '#addNewOptionForm', function(event) {
 				event.preventDefault();
-				var options = JSON.parse($('.questionOptions').attr('options'));
-				var nextIndex = options.length;
-				var newOption = $.trim($('#newOptionName').val());
 				var item = '';
+				var newOption = $.trim($('#newOptionName').val());
+				var options = $('.questionOptions').val();
+				var nextIndex = 0;
+				if (options.length > 0) {
+					options = options.split(',');
+					nextIndex = options.length -1;
+				}
 				if (newOption) {
-					options['yy'] = newOption;
-					console.log(options);
-					$('.questionOptions').prop(options);
-					item = '<li><input type="radio" name="option" value="'+ alphabets[nextIndex] +'"> <label for="option-'+ alphabets[nextIndex] +'">'+ alphabets[nextIndex] +'</label> <span>'+ newOption +'</span> <small><span class="fa fa-check-circle-o"></span> Currect Answer</small> <div class="check"></div></li>';
+					options += newOption +',';
+					$('.questionOptions').val(options);
+					item = '<li><input type="radio" name="option" class="radioOption" value="'+ (nextIndex + 1) +'"> <label for="option-'+ alphabets[nextIndex] +'">'+ alphabets[nextIndex] +'</label> <span>'+ newOption +'</span> <small><span class="fa fa-check-circle-o"></span> Currect Answer</small> <div class="check"></div></li>';
 					$('.single-question ul').append(item);
-					// $('#addOption').modal('hide');
+					$('#newOptionName').val('');
+					$('#addOption').modal('hide');
 				}
 			});
 		});

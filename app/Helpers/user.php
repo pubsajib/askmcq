@@ -4,7 +4,6 @@ function inactiveUsers() {
 		['is_active', '=', ''],
 		['email_verified_at', '<>', ''],
 	];
-	// dd(DB::table('users')->where('is_active', ''));
 	return DB::table('users')->where($where)->count();
 }
 function getBadgeFor($users = null) {

@@ -8,7 +8,7 @@
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="profile-image">
-						<img src="images/profile-img.png" alt="" />
+						<img src="{{ asset('images/profile-img.png') }}" alt="" />
 					</div>
 				</div>
 				<div class="col-sm-9">

@@ -14,7 +14,7 @@
     @yield('styles')
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 </head>
-<body>
+<body class="{{ bodyClass() }}">
     @include('partials/message')
     <div id="app">
         @include('partials/header')
@@ -50,9 +50,7 @@
     <script>
         new Vue({
             el: '#app',
-            data: {
-                selectedSubCat : '',
-            },
+            data: {},
             methods : {
                 loadRegistrationModal(){
                     $('#login').modal('hide');
@@ -101,7 +99,7 @@
                                                 var subCatID = 'sub_'+ subcategory.category_id +'_'+ subcategory.id;
                                                 modal += '<div class="col-sm-4">';
                                                     modal += '<p>'+ 
-                                                            '<label for="'+ subCatID +'"> <input id="'+ subCatID +'" type="radio" name="subcategory" value="'+ subCatID +'" v-model="selectedSubCat" />'+ subcategory.name +'</label>'+
+                                                            '<label for="'+ subCatID +'"> <input id="'+ subCatID +'" type="radio" name="subcategory" class="subCategoryRadio" value="'+ subcategory.id +'" />'+ subcategory.name +'</label>'+
                                                         '</p> ';
                                                 modal += '</div>';
                                             });

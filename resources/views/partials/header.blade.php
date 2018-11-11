@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-sm-2">
                     <div class="logo">
-                        <a href="{{ url('/') }}"><img src="images/logo/site-logo.png" alt="Logo" /></a>
+                        <a href="{{ url('/') }}"><img src="{{ asset('images/logo/site-logo.png') }}" alt="Logo" /></a>
                     </div>
                 </div>
                 <div class="col-sm-2">

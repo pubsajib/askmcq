@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name'              => 'Admin', 
-                'email'             => 'admin@gmail.com', 
+                'email'             => 'test1@gmail.com', 
                 'bio'               => 'BSc in economics', 
                 'user_type'         => 0, 
                 'is_active'         => '1', 
@@ -37,7 +37,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name'              => 'atio admin', 
-                'email'             => 'admin@atitonline.com', 
+                'email'             => 'test2@atitonline.com', 
                 'bio'               => 'BSc in economics', 
                 'user_type'         => 1, 
                 'is_active'         => '1', 
@@ -48,7 +48,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name'              => 'atio user', 
-                'email'             => 'user@atitonline.com', 
+                'email'             => 'test3@atitonline.com', 
                 'bio'               => 'BSc in economics', 
                 'user_type'         => 1, 
                 'is_active'         => '1', 
@@ -59,7 +59,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name'              => 'User', 
-                'email'             => 'user@gmail.com', 
+                'email'             => 'test4@gmail.com', 
                 'bio'               => 'BSc in economics', 
                 'user_type'         => 1, 
                 'is_active'         => '', 

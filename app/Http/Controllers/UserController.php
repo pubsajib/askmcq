@@ -1,49 +1,40 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request; 
 use App\User;
+use App\Qusetion;
 use Session;
 use Image;
 use File;
-
 class UserController extends Controller {
     public function __construct() {
         // $this->middleware('auth');
     }
-    
     public function index() {
         $users = User::all();
         return view('users.index')->withUsers($users);
     }
-
     public function activeUsers() {
         $users = User::where('is_active', '1')->get();
         return view('users.status')->withUsers($users);
     }
-
     public function inactiveUsers() {
         $users = User::where('is_active', '')->get();
         return view('users.status')->withUsers($users);
     }
-
     public function freezeUsers() {
         $users = User::where('is_active', '0')->get();
         return view('users.status')->withUsers($users);
     }
-
     public function show($id) {
         $user = User::where('id', $id)->first();
         $roles = ['editor', 'admin'];
         $user->verified = $user->hasAnyRole($roles);
         return view('users.show')->withUser($user);
     }
-
     public function create() {
         return view('users.create');
     }
-
     public function store(Request $request) {
         // validation
         $request->validate([
@@ -58,7 +49,6 @@ class UserController extends Controller {
         $user->bio = $request->bio;
         $user->password = bcrypt('123456');
         $user->email_verified_at = date('Y-m-d');
-
         // image
         if ( $request->hasFile('image') ) {
             $image = $request->file('image');
@@ -68,20 +58,16 @@ class UserController extends Controller {
             $image->move($location, $fileName);
             $user->image    = $fileName;
         }
-
         $user->save();
         Session::flash('success', 'User added successfully.');
         return view('users.create');
     }
-
     public function edit($id) {
         $user = User::find($id);
         return view('users.edit')->withUser($user);
     }
-
     public function update(Request $request, $id) {
         $user = User::find($id);
-
         // validation
         $request->validate([
             'name'  => 'required|min:2',
@@ -89,7 +75,6 @@ class UserController extends Controller {
             // 'bio'   => 'sometimes|min:2',
             // 'image' => 'sometimes|image'
         ]);
-
         // image
         if ( $request->hasFile('image') ) {
             $image = $request->file('image');
@@ -100,14 +85,11 @@ class UserController extends Controller {
             File::delete('images/'.$user->image);
             $user->image    = $fileName;
         }
-
         // save
         $user->name     = $request->name;
         $user->email    = $request->email;
         $user->bio      = $request->bio;
-
         $user->save();
-
         // Redirect
         return redirect()->route('user.show', $user->id);
     }
@@ -126,12 +108,12 @@ class UserController extends Controller {
         return json_encode($data);
     }
     public function profile() {
-        $user = Auth()->user();
-        // dd('profilePage', $user);
-        return view('users.profile', compact($user));
+        $alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+        $user = Auth()->user()->id;
+        $user = User::with('questions')->firstOrfail();
+        return view('users.profile', compact('user', 'alphabets'));
     }
     public function destroy($id) {
-        dd('destroy user');
         $user = User::find($id);    
         $user->delete();
     }

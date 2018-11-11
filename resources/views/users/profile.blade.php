@@ -8,13 +8,22 @@
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="profile-image">
-						<img src="images/profile-img.png" alt="" />
+						@if ($user->image)
+							<img src="{{ asset('images/users/'. $user->image) }}" alt="user image">
+						@else
+							<img src="{{ asset('images/profile-img.png') }}" alt="user image" />
+						@endif
 					</div>
 				</div>
 				<div class="col-sm-9">
 					<div class="profile-info">
-						<div class="name">Rajesh Lamba <span class="verify"><span class="fa fa-check-circle-o"></span> VERIFIED</span></div>
-						<div class="bio">Master Degree from KUK. Having 6 years Experience in Competition exams.</div>
+						<div class="name">
+							{{ $user->name }} 
+							@if ($user->is_active)
+								<span class="verify"><span class="fa fa-check-circle-o"></span> VERIFIED</span>
+							@endif
+						</div>
+						<div class="bio">{{ $user->bio }}</div>
 						<div class="view">
 							<p><span class="fa fa-calendar"></span> 100,548 Views in last 30 days</p>
 							<p><span class="fa fa-line-chart"></span> 104,692 Lifetime Views</p>
@@ -25,7 +34,7 @@
 						<div class="option">
 							<ul>
 								<li><a href="#">18 Saved MCQ</a></li>
-								<li class="active"><a href="#">18 Question</a></li>
+								<li class="active"><a href="#">{{ published($user) }} Question</a></li>
 								<li><a href="#">6 Answer</a></li>
 								<li><a href="#">2 Following</a></li>
 							</ul>
@@ -40,214 +49,63 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-9">
-					<div id="question">
-						<div class="single-question">
-							<div class="row">
-								<div class="col-sm-7">
-									<div class="question-number">
-										<h3>Question: <strong>01</strong></h3>
-									</div>
-								</div>
-								<div class="col-sm-5">
-									<div class="question-meta">
-										<div class="date">
-											<p><span class="fa fa-calendar-o"></span> 09/11/2018</p>
+					@if ($user->questions)
+						<div id="question">
+							@foreach ($user->questions as $key => $question)
+								<div class="single-question">
+									<div class="row">
+										<div class="col-sm-7">
+											<div class="question-number">
+												<h3>Question: <strong>{{ $key + 1 }}</strong></h3>
+											</div>
 										</div>
-										<div class="author">
-											<p><span class="fa fa-user-circle-o"></span> <a href="#">Abraham Linkon</a></p>
+										<div class="col-sm-5">
+											<div class="question-meta">
+												<div class="date">
+													<p><span class="fa fa-calendar-o"></span> {{ $question->created_at }}</p>
+												</div>
+												<div class="author">
+													<p><span class="fa fa-user-circle-o"></span> <a href="#">{{ $user->name }}</a></p>
+												</div>
+											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-12">	
-									<h3 class="title">Who was the founder of the sociology ?</h3>
-									<p>Select the correct answer</p>
-									<form action="" method="">
-										<ul>
-											<li>
-												<input type="radio" id="option-a" name="selector">
-												<label for="option-a">A</label>
-												<span>Charles Wright Mills</span>
-												<div class="check"></div>
-											</li>
-
-											<li>
-												<input type="radio" id="option-b" name="selector">
-												<label for="option-b">B</label>
-												<span>Charles Wright Mills</span>
-												<div class="check"><div class="inside"></div></div>
-											</li>
-										</ul>
-										<ul>
-											<li>
-												<input type="radio" id="option-c" name="selector">
-												<label for="option-c">C</label>
-												<span>Charles Wright Mills</span>
-												<div class="check"></div>
-											</li>
-
-											<li>
-												<input type="radio" id="option-d" name="selector">
-												<label for="option-d">D</label>
-												<span>Charles Wright Mills</span>
-												<div class="check"><div class="inside"></div></div>
-											</li>
-										</ul>
-									</form>
-								</div>
-							</div>
-						</div>
-						<div class="single-footer">
-							<div class="row">
-								<div class="col-sm-9">
-									<span><img src="images/icon/icon-3.png" alt=""> <a href="#">Explanation & discussion</a></span>
-									<span><img src="images/icon/icon4.png" alt=""> <a href="#">Report</a></span>
-								</div>
-								<div class="col-sm-3">
-									<a href="#" class="btn btn-theme lg block carve-left">Answer it</a>
-								</div>
-							</div>
-						</div>
-						<div class="single-question">
-							<div class="row">
-								<div class="col-sm-7">
-									<div class="question-number">
-										<h3>Question: <strong>01</strong></h3>
-									</div>
-								</div>
-								<div class="col-sm-5">
-									<div class="question-meta">
-										<div class="date">
-											<p><span class="fa fa-calendar-o"></span> 09/11/2018</p>
-										</div>
-										<div class="author">
-											<p><span class="fa fa-user-circle-o"></span> <a href="#">Abraham Linkon</a></p>
+									<div class="row">
+										<div class="col-sm-12">	
+											<h3 class="title">{{ $question->question }}</h3>
+											@if ($options = options($question))
+												<p>Select the correct answer</p>
+												<ul>
+													@foreach ($options as $optionSN => $option)
+														<li>
+															<input type="radio" name="options">
+															<label for="option-{{ $optionSN }}">{{ $alphabets[$optionSN] }}</label>
+															<span>{{ $option }}</span>
+															<div class="check"></div>
+														</li>
+													@endforeach
+												</ul>
+											@endif
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-12">	
-									<h3 class="title">Who was the founder of the sociology ?</h3>
-									<p>Select the correct answer</p>
-									<form action="" method="">
-										<ul>
-											<li>
-												<input type="radio" id="option-aa" name="selector">
-												<label for="option-aa">A</label>
-												<span>Charles Wright Mills</span>
-												<div class="check"></div>
-											</li>
-
-											<li>
-												<input type="radio" id="option-bb" name="selector">
-												<label for="option-bb">B</label>
-												<span>Charles Wright Mills</span>
-												<div class="check"><div class="inside"></div></div>
-											</li>
-										</ul>
-										<ul>
-											<li>
-												<input type="radio" id="option-cc" name="selector">
-												<label for="option-cc">C</label>
-												<span>Charles Wright Mills</span>
-												<div class="check"></div>
-											</li>
-
-											<li>
-												<input type="radio" id="option-dd" name="selector">
-												<label for="option-dd">D</label>
-												<span>Charles Wright Mills</span>
-												<div class="check"><div class="inside"></div></div>
-											</li>
-										</ul>
-									</form>
-								</div>
-							</div>
-						</div>
-						<div class="single-footer">
-							<div class="row">
-								<div class="col-sm-9">
-									<span><img src="images/icon/icon-3.png" alt=""> <a href="#">Explanation & discussion</a></span>
-									<span><img src="images/icon/icon4.png" alt=""> <a href="#">Report</a></span>
-								</div>
-								<div class="col-sm-3">
-									<a href="#" class="btn btn-theme lg block carve-left">Answer it</a>
-								</div>
-							</div>
-						</div>
-						<div class="single-question">
-							<div class="row">
-								<div class="col-sm-7">
-									<div class="question-number">
-										<h3>Question: <strong>01</strong></h3>
-									</div>
-								</div>
-								<div class="col-sm-5">
-									<div class="question-meta">
-										<div class="date">
-											<p><span class="fa fa-calendar-o"></span> 09/11/2018</p>
+								<div class="single-footer">
+									<div class="row">
+										<div class="col-sm-9">
+											<span><img src="images/icon/icon-3.png" alt=""> <a href="{{ route('discussion', $question->id) }}">Explanation & discussion</a></span>
+											<span><img src="images/icon/icon4.png" alt=""> <a href="{{ route('report', $question->id) }}">Report</a></span>
 										</div>
-										<div class="author">
-											<p><span class="fa fa-user-circle-o"></span> <a href="#">Abraham Linkon</a></p>
+										<div class="col-sm-3">
+											<a href="{{ route('answer', $question->id) }}" class="btn btn-theme lg block carve-left">Answer it</a>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-12">	
-									<h3 class="title">Who was the founder of the sociology ?</h3>
-									<p>Select the correct answer</p>
-									<form action="" method="">
-										<ul>
-											<li>
-												<input type="radio" id="option-aaa" name="selector">
-												<label for="option-aaa">A</label>
-												<span>Charles Wright Mills</span>
-												<div class="check"></div>
-											</li>
-
-											<li>
-												<input type="radio" id="option-bbb" name="selector">
-												<label for="option-bbb">B</label>
-												<span>Charles Wright Mills</span>
-												<div class="check"><div class="inside"></div></div>
-											</li>
-										</ul>
-										<ul>
-											<li>
-												<input type="radio" id="option-ccc" name="selector">
-												<label for="option-ccc">C</label>
-												<span>Charles Wright Mills</span>
-												<div class="check"></div>
-											</li>
-
-											<li>
-												<input type="radio" id="option-ddd" name="selector">
-												<label for="option-ddd">D</label>
-												<span>Charles Wright Mills</span>
-												<div class="check"><div class="inside"></div></div>
-											</li>
-										</ul>
-									</form>
-								</div>
-							</div>
+							@endforeach
 						</div>
-						<div class="single-footer">
-							<div class="row">
-								<div class="col-sm-9">
-									<span><img src="images/icon/icon-3.png" alt=""> <a href="#">Explanation & discussion</a></span>
-									<span><img src="images/icon/icon4.png" alt=""> <a href="#">Report</a></span>
-								</div>
-								<div class="col-sm-3">
-									<a href="#" class="btn btn-theme lg block carve-left">Answer it</a>
-								</div>
-							</div>
-						</div>
-					</div>
+					@else
+						<h3 class="text-center text-danger">Nothing Found!</h3>
+					@endif
 				</div>
-					
 				<!-- Ads Widget -->
 				<div class="col-sm-3">
 					<div class="ads-widget">

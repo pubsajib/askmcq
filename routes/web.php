@@ -31,5 +31,11 @@ Route::get('/api/group/{group}', 'GroupController@categories')->name('group.cate
 Auth::routes(['verify' => true]);
 Route::get('{emailVerify}', 'Auth\VerificationController@showLoginModal')->name('emailvarification');
 Route::get('{token}', 'Auth\ResetPasswordController@showResetModal')->name('passwordreset');
+
+// PAGES
+Route::get('/report/{question}', 'PagesController@report')->name('report');
+Route::get('/answer/{question}', 'PagesController@answer')->name('answer');
+Route::get('/discussion/{question}', 'PagesController@discussion')->name('discussion');
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');

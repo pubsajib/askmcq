@@ -1,4 +1,11 @@
 <?php 
+function bodyClass($class='') {
+	$classes = '';
+	$classes .= Route::currentRouteName() .' ';
+	if ($class) $classes .= $class .' ';
+	$classes = str_replace('.', '_', $classes);
+	echo trim($classes); 
+}
 function excerpt($value, $moreText = '...', $size = 50) {
 	$value = strip_tags($value);
 	$text = substr( $value, 0, $size);
