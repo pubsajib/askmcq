@@ -8,7 +8,7 @@ use Image;
 use File;
 class UserController extends Controller {
     public function __construct() {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
     public function index() {
         $users = User::all();
@@ -93,6 +93,10 @@ class UserController extends Controller {
         // Redirect
         return redirect()->route('user.show', $user->id);
     }
+    public function destroy($id) {
+        $user = User::find($id);    
+        $user->delete();
+    }
     public function updateStaush(Request $request, $id) {
         $data = [];
         $user = User::find($id);
@@ -111,10 +115,26 @@ class UserController extends Controller {
         $alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
         $user = Auth()->user()->id;
         $user = User::with('questions')->firstOrfail();
-        return view('users.profile', compact('user', 'alphabets'));
+        $questions = filter_questions($user);
+        return view('users.profile', compact('user', 'alphabets', 'questions'));
     }
-    public function destroy($id) {
-        $user = User::find($id);    
-        $user->delete();
+    public function follow(int $profile) {
+        $user = User::find($profile);
+        if(! $user) return redirect()->back()->with('error', 'User does not exist.');
+
+        $user->followers()->attach(auth()->user()->id);
+        return redirect()->back()->with('success', 'Successfully followed the user.');
+    }
+    public function unFollow(int $profile) {
+        $user = User::find($profile);
+        if(! $user) return redirect()->back()->with('error', 'User does not exist.');
+        $user->followers()->detach(auth()->user()->id);
+        return redirect()->back()->with('success', 'Successfully unfollowed the user.');
+    }
+    public function followInfo(int $userId) {
+        $user = User::find($userId);
+        $followers = $user->followers;
+        $followings = $user->followings;
+        dd($followers, $followings);
     }
 }

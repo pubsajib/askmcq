@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOptionQuestionsTable extends Migration
+class CreateFollowersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateOptionQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('option_questions', function (Blueprint $table) {
+        Schema::create('followers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('option_id');
-            $table->integer('question_id');
+            $table->integer('follower_id')->unsigned();
+            $table->integer('leader_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateOptionQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('option_questions');
+        Schema::dropIfExists('followers');
     }
 }

@@ -1,5 +1,5 @@
-{{-- @extends('layouts.user') --}}
-{{-- @section('title', 'REPORT')
+@extends('layouts.user')
+@section('title', 'TERMS')
 @section('styles')
 @endsection
 
@@ -7,7 +7,7 @@
 	@include('partials/banner')
     @include('partials/breadcrumb')
     <br> <br> <br> <br>
-    <h1 class="text-center">Report</h1>
+    <h1 class="text-center">Terms</h1>
     <br> <br> <br> <br>
     <br> <br> <br> <br>
 @endsection
@@ -16,4 +16,4 @@
 	<script>
 		
 	</script>
-@endsection --}}
+@endsection

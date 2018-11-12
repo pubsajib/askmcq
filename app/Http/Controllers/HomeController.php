@@ -27,7 +27,10 @@ class HomeController extends Controller
     public function index() {
         $groups = Group::with('categories')->get();
         $alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-        $questions = Question::with('user')->get();
+        $questions = Question::with('user')->take(5)->get();
         return view('welcome', compact('groups', 'questions', 'alphabets'));
+    }
+    public function privacypolicy() {
+        return view('pages.privacypolicy');
     }
 }

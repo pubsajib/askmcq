@@ -15,25 +15,32 @@ class QuestionController extends Controller {
     public function create() {}
     public function store(Request $request) {
         $request->validate([
+            'category' => 'required',
             'question' => 'required',
-            'options' => 'required',
+            'options' => 'nullable',
             'answer' => 'nullable',
             'explanation' => 'nullable',
             'direction' => 'nullable',
             'title' => 'nullable',
         ]);
-        $userID = Auth::id() ? Auth::id() : 1;
+        $userID = Auth::id();
         $question = new Question;
-        $question->question = $request->question;
-        $question->explanation = $request->explanation;
-        $question->options = rtrim($request->options, ',');
-        $question->answer = $request->answer ? $request->answer : 1;
-        $question->subcategory_id = $request->subcategory;
-        $question->user_id = $userID;
-        $question->title = $request->title;
-        $question->direction = $request->direction;
+
+        $question->question         = $request->question;
+        $question->explanation      = $request->explanation;
+        $question->options          = rtrim($request->options, ',');
+        $question->answer           = $request->answer ? $request->answer : 1;
+        $question->subcategory_id   = $request->category;
+        $question->user_id          = $userID;
+        $question->title            = $request->title;
+        $question->direction        = $request->direction;
+        $question->direction        = $request->direction;
+        $question->type             = $request->type == 'saved' ? 'saved' : 'submited';
+        $question->published        = $request->published ? '1' : '1';
+
         $question->save();
-        return redirect()->route('user.profile');
+        return redirect()->back();
+        // return redirect()->route('user.profile');
     }
     public function show(Question $question) {}
     public function edit(Question $question) {}

@@ -2,7 +2,6 @@
 @section('content')
 <!-- Main Wrapper -->
 <div class="wrapper no-padding">
-	<!-- Profile -->
 	<div class="single-profile">
 		<div class="container">
 			<div class="row">
@@ -33,10 +32,10 @@
 						</div>
 						<div class="option">
 							<ul>
-								<li><a href="#">18 Saved MCQ</a></li>
-								<li class="active"><a href="#">{{ published($user) }} Question</a></li>
-								<li><a href="#">6 Answer</a></li>
-								<li><a href="#">2 Following</a></li>
+								<li><a href="javascript:;">{{ count($questions['saved']) }} Saved MCQ</a></li>
+								<li class="active"><a href="javascript:;">{{ count($questions['submited']) }} Question</a></li>
+								<li><a href="javascript:;">6 Answer</a></li>
+								<li><a href="javascript:;">2 Following</a></li>
 							</ul>
 						</div>
 					</div>
@@ -49,8 +48,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-9">
-					@if ($user->questions)
-						<div id="question">
+					<div id="question">
+						@if ($user->questions)
 							@foreach ($user->questions as $key => $question)
 								<div class="single-question">
 									<div class="row">
@@ -101,10 +100,10 @@
 									</div>
 								</div>
 							@endforeach
-						</div>
-					@else
-						<h3 class="text-center text-danger">Nothing Found!</h3>
-					@endif
+						@else
+							<h3 class="text-center text-danger">Nothing Found!</h3>
+						@endif
+					</div>
 				</div>
 				<!-- Ads Widget -->
 				<div class="col-sm-3">

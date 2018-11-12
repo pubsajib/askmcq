@@ -1,49 +1,24 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-use App\Post;
-use App\Mail\Contact;
-use DB;
-use Session;
-
-class PageController extends Controller
-{
-    // Home page controller
-    public function home()
-    {
-        // Get all post
-        $posts = Post::orderBy('created_at', 'desc')->limit(4)->get();
-        // Pass in on view
-        return view('pages.home')->withPosts($posts);
+class PageController extends Controller {
+	public function __construct() {
+        $this->middleware('auth', ['except' => ['terms', 'privacypolicy']]);
     }
-
-    // About page controller
-    public function about() {
-        // Get all post
-        // Pass in on view
-        return view('pages.about');
+    public function report(Request $request, $question) {
+    	return view('pages.report');
     }
-
-    // Contact page controller
-    public function getContact()
-    {
-        // Get all post
-        // Pass in on view
-        return view('pages.contact');
+    public function answer(Request $request, $question) {
+    	return view('pages.answer');
     }
-    public function postContact(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'subject' => 'required|min:3'
-        ]);
-        \Mail::to('pubsajib@gmail.com')->send(new Contact($request));
-        return redirect()->route('contact')->with('success', 'Mail sent successfully');
+    public function discussion(Request $request, $question) {
+    	return view('pages.discussion');
     }
-    public function mailTemplate()
-    {
-        return new Contact();
+    public function terms() {
+    	dd('var');
+    	return view('pages.terms');
+    }
+    public function privacypolicy() {
+    	return view('pages.privacypolicy');
     }
 }

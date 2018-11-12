@@ -23,7 +23,7 @@
                     <input type="hidden" name="userLogin" value="1">
                     <p><input id="email" type="email" class="form-control" name="email" placeholder="Email" autofocus/></p>
                     <p><input type="password" class="form-control" name="password" placeholder="Password" /></p>
-                    <p><button type="submit" href="#" class="btn btn-theme md block radius">Login &nbsp;&nbsp;&nbsp; <span class="fa fa-long-arrow-right"></span></button></p>
+                    <p><button type="submit" class="btn btn-theme md block radius">Login &nbsp;&nbsp;&nbsp; <span class="fa fa-long-arrow-right"></span></button></p>
                 </form>
 
                 <div class="others-option">
@@ -36,7 +36,7 @@
                         </div>
                     </div><br>
 
-                    <p class="text-center">By signing up,you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a></p>
+                    <p class="text-center">By signing up, you agree to our <a href="{{ route('terms') }}">Terms</a> and <a href="{{ route('privacypolicy') }}">Privacy Policy</a></p>
                 </div>
             </div>
         </div>

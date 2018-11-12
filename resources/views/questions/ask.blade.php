@@ -77,8 +77,9 @@
 				}
 				if (newOption) {
 					options += newOption +',';
+					$('.emptyOptionsMessage').addClass('d-none');
 					$('.questionOptions').val(options);
-					item = '<li><input type="radio" name="option" class="radioOption" value="'+ (nextIndex + 1) +'"> <label for="option-'+ alphabets[nextIndex] +'">'+ alphabets[nextIndex] +'</label> <span>'+ newOption +'</span> <small><span class="fa fa-check-circle-o"></span> Currect Answer</small> <div class="check"></div></li>';
+					item = '<li><input type="radio" name="option" class="radioOption" value="'+ newOption +'"> <label for="option-'+ alphabets[nextIndex] +'">'+ alphabets[nextIndex] +'</label> <span>'+ newOption +'</span> <small><span class="fa fa-check-circle-o"></span> Currect Answer</small> <div class="check"></div></li>';
 					$('.single-question ul').append(item);
 					$('#newOptionName').val('');
 					$('#addOption').modal('hide');
