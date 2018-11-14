@@ -39,8 +39,8 @@ class QuestionController extends Controller {
         $question->published        = $request->published ? '1' : '1';
 
         $question->save();
-        return redirect()->back();
-        // return redirect()->route('user.profile');
+        // return redirect()->back();
+        return redirect()->route('profile');
     }
     public function show(Question $question) {}
     public function edit(Question $question) {}

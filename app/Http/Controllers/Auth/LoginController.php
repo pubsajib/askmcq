@@ -43,7 +43,7 @@ class LoginController extends Controller
         $this->clearLoginAttempts($request);
         Session::flash('success', 'Logged in.');
         if ($request->userLogin) {
-            return $this->authenticated($request, $this->guard()->user()) ?: redirect()->route('user.profile');
+            return $this->authenticated($request, $this->guard()->user()) ?: redirect()->route('profile');
         } else {
             return $this->authenticated($request, $this->guard()->user()) ?: redirect()->intended($this->redirectPath());
         }

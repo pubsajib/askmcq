@@ -7,4 +7,5 @@ $(document).ready(function() {
         $('.sub-categories').addClass('list-hide');
         $(id).removeClass('list-hide');
     });
+    // USER PROFILE
 })

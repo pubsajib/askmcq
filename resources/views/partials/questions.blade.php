@@ -25,7 +25,7 @@
                                                     <p><span class="fa fa-calendar-o"></span> {{ $question->created_at }}</p>
                                                 </div>
                                                 <div class="author">
-                                                    <p><span class="fa fa-user-circle-o"></span> <a href="{{ route('profile', $question->user->id) }}">{{ $question->user->name }}</a></p>
+                                                    <p><span class="fa fa-user-circle-o"></span> <a href="{{ route('profile.show', $question->user->id) }}">{{ $question->user->name }}</a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -52,8 +52,8 @@
                                 <div class="single-footer">
                                     <div class="row">
                                         <div class="col-sm-9">
-                                            <span><img src="images/icon/icon-3.png" alt=""> <a href="{{ route('discussion', $question->id) }}">Explanation & discussion</a></span>
-                                            <span><img src="images/icon/icon4.png" alt=""> <a href="{{ route('report', $question->id) }}">Report</a></span>
+                                            <span><img src="{{ asset('images/icon/icon-3.png') }}" alt=""> <a href="{{ route('discussion', $question->id) }}">Explanation & discussion</a></span>
+                                            <span><img src="{{ asset('images/icon/icon4.png') }}" alt=""> <a href="{{ route('report', $question->id) }}">Report</a></span>
                                         </div>
                                         <div class="col-sm-3">
                                             <a href="{{ route('answer', $question->id) }}" class="btn btn-theme lg block carve-left">Answer it</a>
@@ -125,8 +125,8 @@
                         <div class="single-footer">
                             <div class="row">
                                 <div class="col-sm-9">
-                                    <span><img src="images/icon/icon-3.png" alt=""> <a href="#">Explanation & discussion</a></span>
-                                    <span><img src="images/icon/icon4.png" alt=""> <a href="#">Report</a></span>
+                                    <span><img src="{{ asset('images/icon/icon-3.png') }}" alt=""> <a href="#">Explanation & discussion</a></span>
+                                    <span><img src="{{ asset('images/icon/icon4.png') }}" alt=""> <a href="#">Report</a></span>
                                 </div>
                                 <div class="col-sm-3">
                                     <a href="#" class="btn btn-theme lg block carve-left">Answer it</a>
@@ -142,16 +142,16 @@
                 <div class="separator"></div>
                 <div class="ads-widget">
                     <div class="ads">
-                        <img src="images/ads.jpg" alt="">
+                        <img src="{{ asset('images/ads.jpg') }}" alt="">
                     </div>
                     <div class="ads">
-                        <img src="images/ads.jpg" alt="">
+                        <img src="{{ asset('images/ads.jpg') }}" alt="">
                     </div>
                     <div class="ads">
-                        <img src="images/ads.jpg" alt="">
+                        <img src="{{ asset('images/ads.jpg') }}" alt="">
                     </div>
                     <div class="ads">
-                        <img src="images/ads.jpg" alt="">
+                        <img src="{{ asset('images/ads.jpg') }}" alt="">
                     </div>
                 </div>
             </div>  

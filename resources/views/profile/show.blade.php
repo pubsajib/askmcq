@@ -10,22 +10,37 @@
 						@if ($user->image)
 							<img src="{{ asset('images/users/'. $user->image) }}" alt="user image">
 						@else
-							<img src="{{ asset('images/profile-img.png') }}" alt="user image" />
+							<span class="fa fa-user circle-icon"></span>
+							<a class="pill-sm edit" href="{{ route('profile.edit') }}">Edit <span class="fa fa-edit"></span></a>
+							{{-- <img src="{{ asset('images/profile-img.png') }}" alt="user image" /> --}}
 						@endif
 					</div>
 				</div>
 				<div class="col-sm-9">
 					<div class="profile-info">
 						<div class="name">
-							{{ $user->name }} 
-							@if ($user->is_active)
+							{{ $user->name }}
+							@if ($user->verified)
 								<span class="verify"><span class="fa fa-check-circle-o"></span> VERIFIED</span>
 							@endif
 						</div>
-						<div class="bio">{{ $user->bio }}</div>
+						<div class="bio">
+							@if ($user->bio)
+								{{ $user->bio }}
+							@else
+								<div class="bioInsert">
+									<div class="defaultTxt">
+										<span class="txt">Please insert your bio. </span>
+										<a class="pill-sm edit" @click="bioInsert">Edit <span class="fa fa-edit"></span></a>
+										<a class="pill-sm d-none done" @click="bioInserted"><span class="fa fa-check-circle-o"></span> Done</a>
+									</div>
+									<form @submit.prevent="bioInserted" class="d-none"><input type="text" class="form-control" placeholder="Example: MS in Economics"></form>
+								</div>
+							@endif
+						</div>
 						<div class="view">
-							<p><span class="fa fa-calendar"></span> 100,548 Views in last 30 days</p>
-							<p><span class="fa fa-line-chart"></span> 104,692 Lifetime Views</p>
+							<p><span class="fa fa-calendar"></span> {{ $user->monthlyViews->count() }} Views in last 30 days</p>
+							<p><span class="fa fa-line-chart"></span> {{ $user->views->count() }} Lifetime Views</p>
 						</div>
 						<div class="follow">
 							<a href="#" class="btn btn-theme pill">FOLLOW</a>
@@ -91,8 +106,8 @@
 								<div class="single-footer">
 									<div class="row">
 										<div class="col-sm-9">
-											<span><img src="images/icon/icon-3.png" alt=""> <a href="{{ route('discussion', $question->id) }}">Explanation & discussion</a></span>
-											<span><img src="images/icon/icon4.png" alt=""> <a href="{{ route('report', $question->id) }}">Report</a></span>
+											<span><img src="{{ asset('images/icon/icon-3.png') }}" alt=""> <a href="{{ route('discussion', $question->id) }}">Explanation & discussion</a></span>
+											<span><img src="{{ asset('images/icon/icon4.png') }}" alt=""> <a href="{{ route('report', $question->id) }}">Report</a></span>
 										</div>
 										<div class="col-sm-3">
 											<a href="{{ route('answer', $question->id) }}" class="btn btn-theme lg block carve-left">Answer it</a>
@@ -109,16 +124,16 @@
 				<div class="col-sm-3">
 					<div class="ads-widget">
 						<div class="ads">
-							<img src="images/ads.jpg" alt="">
+							<img src="{{ asset('images/ads.jpg') }}" alt="">
 						</div>
 						<div class="ads">
-							<img src="images/ads.jpg" alt="">
+							<img src="{{ asset('images/ads.jpg') }}" alt="">
 						</div>
 						<div class="ads">
-							<img src="images/ads.jpg" alt="">
+							<img src="{{ asset('images/ads.jpg') }}" alt="">
 						</div>
 						<div class="ads">
-							<img src="images/ads.jpg" alt="">
+							<img src="{{ asset('images/ads.jpg') }}" alt="">
 						</div>
 					</div>
 				</div>	

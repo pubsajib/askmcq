@@ -9,9 +9,7 @@ class UsersTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-        // Create default admin
+    public function run() {
         DB::table('users')->insert([
             [
                 'name'              => 'Sabuz', 
@@ -19,8 +17,8 @@ class UsersTableSeeder extends Seeder
                 'bio'               => 'BSc in economics',
                 'user_type'         => 0, 
                 'is_active'         => '1', 
-                'email_verified_at' => date('Y-m-d H:i:s', time()),
                 'password'          => bcrypt('32bit.PNG'), 
+                'email_verified_at' => date('Y-m-d H:i:s', time()),
                 'created_at'        => date("Y-m-d h:i:s"), 
                 'updated_at'        => date("Y-m-d h:i:s")
             ],
@@ -30,8 +28,8 @@ class UsersTableSeeder extends Seeder
                 'bio'               => 'BSc in economics', 
                 'user_type'         => 0, 
                 'is_active'         => '1', 
-                'email_verified_at' => date('Y-m-d H:i:s', time()),
                 'password'          => bcrypt('123456'), 
+                'email_verified_at' => date('Y-m-d H:i:s', time()),
                 'created_at'        => date("Y-m-d h:i:s"), 
                 'updated_at'        => date("Y-m-d h:i:s")
             ],
@@ -41,8 +39,8 @@ class UsersTableSeeder extends Seeder
                 'bio'               => 'BSc in economics', 
                 'user_type'         => 1, 
                 'is_active'         => '1', 
-                'email_verified_at' => date('Y-m-d H:i:s', time()),
                 'password'          => bcrypt('123456'), 
+                'email_verified_at' => date('Y-m-d H:i:s', time()),
                 'created_at'        => date("Y-m-d h:i:s"), 
                 'updated_at'        => date("Y-m-d h:i:s")
             ],
@@ -52,8 +50,8 @@ class UsersTableSeeder extends Seeder
                 'bio'               => 'BSc in economics', 
                 'user_type'         => 1, 
                 'is_active'         => '1', 
-                'email_verified_at' => date('Y-m-d H:i:s', time()),
                 'password'          => bcrypt('123456'), 
+                'email_verified_at' => date('Y-m-d H:i:s', time()),
                 'created_at'        => date("Y-m-d h:i:s"), 
                 'updated_at'        => date("Y-m-d h:i:s")
             ],
@@ -63,8 +61,8 @@ class UsersTableSeeder extends Seeder
                 'bio'               => 'BSc in economics', 
                 'user_type'         => 1, 
                 'is_active'         => '', 
-                'email_verified_at' => date('Y-m-d H:i:s', time()),
                 'password'          => bcrypt('123456'), 
+                'email_verified_at' => date('Y-m-d H:i:s', time()),
                 'created_at'        => date("Y-m-d h:i:s"), 
                 'updated_at'        => date("Y-m-d h:i:s")
             ]

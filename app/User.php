@@ -9,6 +9,22 @@ class User extends Authenticatable implements MustVerifyEmail{
     use Notifiable;
     protected $fillable = ['userLogin', 'name', 'email', 'password', ];
     protected $hidden = ['password', 'remember_token', ];
+    public function questions() {
+        return $this->hasMany(Question::class)->latest();
+    }
+    public function followers() {
+        return $this->belongsToMany(User::class, 'followers', 'leader_id', 'follower_id')->withTimestamps();
+    }
+    public function followings() {
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'leader_id')->withTimestamps();
+    }
+    public function views(){
+        return $this->hasMany(View::class, 'user_id');
+    }
+    public function monthlyViews(){
+        $date = \Carbon\Carbon::today()->subDays(30);
+        return $this->hasMany(View::class, 'user_id')->whereDate('created_at', '>=', $date);
+    }
     public function roles() {
         return $this->belongsToMany(Role::class, 'role_user');
     }
@@ -30,14 +46,5 @@ class User extends Authenticatable implements MustVerifyEmail{
     }
     public function sendPasswordResetNotification($token) {
         $this->notify(new MailResetPasswordToken($token));
-    }
-    public function questions() {
-        return $this->hasMany(Question::class)->latest();
-    }
-    public function followers() {
-        return $this->belongsToMany(User::class, 'followers', 'leader_id', 'follower_id')->withTimestamps();
-    }
-    public function followings() {
-        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'leader_id')->withTimestamps();
     }
 }

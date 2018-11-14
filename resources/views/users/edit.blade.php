@@ -25,7 +25,7 @@
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label for="">Type of experience</label>
+							<label for="">Profile Image</label>
 							<input type="file" name="image" class="form-control">
 							@if ($user->image)
 								<div class="profile-image">

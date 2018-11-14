@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ asset('css/custom.css') }}?v={{ time() }}" /> --}}
     @yield('styles')
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 </head>
@@ -112,7 +113,29 @@
                     }
                     jQuery('#subcategoryList').html(modal);
                     if (modal) jQuery('#subCategoryModal').modal('show');
-                }
+                },
+                bioInsert(){
+                    $('.bioInsert .edit').addClass('d-none');
+                    $('.bioInsert .done, .bioInsert form').removeClass('d-none');
+                },
+                bioInserted(){
+                    var bio = $('.bioInsert form input').val().trim();
+                    if (bio) {
+                        var vue = this;
+                        axios.post('api/user-bio', { bio: bio })
+                        .then(function(response) {
+                            $('.bioInsert span.txt').text(response.data);
+                            $('.bioInsert .done, .bioInsert form').addClass('d-none');
+                            $('.bioInsert .edit').removeClass('d-none');
+                            // console.log(response.data);
+                        })
+                        .catch(function(error) {
+                            console.log(error);
+                        });
+                    } else {
+                        alert('Nothing Inserted.');
+                    }
+                },
             }
         });
     </script>

@@ -6,6 +6,7 @@ use App\Qusetion;
 use Session;
 use Image;
 use File;
+use Auth;
 class UserController extends Controller {
     public function __construct() {
         $this->middleware('auth');
@@ -52,7 +53,6 @@ class UserController extends Controller {
         // image
         if ( $request->hasFile('image') ) {
             $image = $request->file('image');
-            // dd($image->getClientOriginalName());
             $fileName = 'user-'. time() .'.'. $image->getClientOriginalExtension();
             $location = public_path('images/users/'. $fileName);
             $image->move($location, $fileName);
@@ -86,9 +86,11 @@ class UserController extends Controller {
             $user->image    = $fileName;
         }
         // save
-        $user->name     = $request->name;
-        $user->email    = $request->email;
-        $user->bio      = $request->bio;
+        $user->name         = $request->name;
+        $user->email        = $request->email;
+        $user->bio          = $request->bio;
+        $user->phone        = $request->phone;
+        $user->profession   = $request->profession;
         $user->save();
         // Redirect
         return redirect()->route('user.show', $user->id);
@@ -111,13 +113,6 @@ class UserController extends Controller {
         $data['message'] = 'Update failed.';
         return json_encode($data);
     }
-    public function profile() {
-        $alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-        $user = Auth()->user()->id;
-        $user = User::with('questions')->firstOrfail();
-        $questions = filter_questions($user);
-        return view('users.profile', compact('user', 'alphabets', 'questions'));
-    }
     public function follow(int $profile) {
         $user = User::find($profile);
         if(! $user) return redirect()->back()->with('error', 'User does not exist.');
@@ -136,5 +131,12 @@ class UserController extends Controller {
         $followers = $user->followers;
         $followings = $user->followings;
         dd($followers, $followings);
+    }
+    public function bio(Request $request) {
+        $request->validate(['bio' => 'required']);
+        $user       = Auth::User();
+        $user->bio  = $request->bio;
+        $user->save();
+        return $user->bio;
     }
 }
