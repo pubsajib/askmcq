@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>{{ config('app.name', 'Laravel') }} | @yield('title') </title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- css -->
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/menu.css') }}" />
@@ -59,7 +60,6 @@
     <script src="{{ asset('js/axios.js') }}"></script>
     <script>
         jQuery(function($) {
-            $('#imageUpload').modal('show');
             @isset ($token) jQuery('#reset_password').modal('show'); @endisset
             @if (session('loginModal')) jQuery('#login').modal('show'); @endif
         });
@@ -91,6 +91,9 @@
                         alert('Nothing Inserted.');
                     }
                 },
+                imageUploadModal(){
+                    $('#imageUpload').modal('show'); 
+                }
             }
         });
     </script>
@@ -104,8 +107,8 @@
             enableExif: true,
             enableOrientation: true,    
             viewport: { 
-                width: 200,
-                height: 200,
+                width: 269,
+                height: 269,
                 type: 'circle'
             },
             boundary: {
@@ -119,26 +122,35 @@
               resize.croppie('bind',{
                 url: e.target.result
               }).then(function(){
-                console.log('jQuery bind complete');
+                // console.log('jQuery bind complete');
               });
             }
             reader.readAsDataURL(this.files[0]);
         });
         $('.upload-image').on('click', function (ev) {
-          resize.croppie('result', {
-            type: 'canvas',
-            size: 'viewport'
-          }).then(function (img) {
-            $.ajax({
-              url: "{{route('image.upload')}}",
-              type: "POST",
-              data: {"image":img},
-              success: function (data) {
-                html = '<img src="' + img + '" />';
-                $("#preview-crop-image").html(html);
-              }
-            });
-          });
+            var image = $.trim($('#image').val());
+            if (image.length) {
+                resize.croppie('result', {
+                    type: 'canvas',
+                    size: 'viewport'
+                }).then(function (img) {
+                    $.ajax({
+                      url: "{{route('image.upload')}}",
+                      type: "POST",
+                      data: {"image":img},
+                      success: function (data) {
+                        $('#profileImageInput').val(data.image)
+                        $("#preview-crop-image").html('<img src="'+ img +'" />');
+                        $(".profile-image").html('<img class="mt20 img-circle" src="'+ img +'" alt="'+ data.username +' image">');
+                        setTimeout(function() {
+                            $('#imageUpload').modal('hide');
+                        }, 1000);
+                      }
+                    });
+                });
+            } else {
+                alert('Please select an image');
+            }
         });
     </script>
     @yield('scripts')

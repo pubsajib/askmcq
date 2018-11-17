@@ -37,6 +37,7 @@
                         @endif
                     @endforeach
                 </div>
+                <div class="choosenCategory"></div>
             </div>
         @endif
     </div>

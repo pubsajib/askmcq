@@ -7,7 +7,7 @@
             <div class="modal-body">
                 <h5>Add new option</h5>
                 <form action="" id="addNewOptionForm">
-                    <p><input type="text" class="form-control" id="newOptionName" autofocus/></p>
+                    <p><input type="text" class="form-control newOptionName" autofocus/></p>
                     <p><button type="submit" href="#" class="btn btn-theme pull-right"><span class="fa fa-save"></span> &nbsp; Add</button></p>
                 </form>
             </div>

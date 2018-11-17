@@ -14,6 +14,7 @@ class QuestionController extends Controller {
     public function index() {}
     public function create() {}
     public function store(Request $request) {
+        dd($request);
         $request->validate([
             'category' => 'required',
             'question' => 'required',

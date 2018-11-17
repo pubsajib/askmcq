@@ -9,8 +9,8 @@ class CreateProfileViewsTable extends Migration {
         Schema::create('profile_views', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('viewer_id')->unsigned()->nullable();
             $table->string("ip")->nullable();
+            $table->integer('viewer_id')->unsigned()->nullable();
             // $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });

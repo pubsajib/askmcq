@@ -19,11 +19,11 @@ class User extends Authenticatable implements MustVerifyEmail{
         return $this->belongsToMany(User::class, 'followers', 'follower_id', 'leader_id')->withTimestamps();
     }
     public function views(){
-        return $this->hasMany(View::class, 'user_id');
+        return $this->hasMany(Profileview::class, 'user_id');
     }
     public function monthlyViews(){
         $date = \Carbon\Carbon::today()->subDays(30);
-        return $this->hasMany(View::class, 'user_id')->whereDate('created_at', '>=', $date);
+        return $this->hasMany(Profileview::class, 'user_id')->whereDate('created_at', '>=', $date);
     }
     public function roles() {
         return $this->belongsToMany(Role::class, 'role_user');

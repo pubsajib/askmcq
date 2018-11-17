@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>{{ config('app.name', 'Laravel') }} | @yield('title') </title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- css -->
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/menu.css') }}" />
@@ -100,7 +101,7 @@
                                                 var subCatID = 'sub_'+ subcategory.category_id +'_'+ subcategory.id;
                                                 modal += '<div class="col-sm-4">';
                                                     modal += '<p>'+ 
-                                                            '<label for="'+ subCatID +'"> <input id="'+ subCatID +'" type="radio" name="subcategory" class="subCategoryRadio" value="'+ subcategory.id +'" />'+ subcategory.name +'</label>'+
+                                                            '<label for="'+ subCatID +'"> <input id="'+ subCatID +'" type="radio" name="subcategory" class="subCategoryRadio" txt="'+ category.name +' > '+ subcategory.name +'" value="'+ subcategory.id +'" />'+ subcategory.name +'</label>'+
                                                         '</p> ';
                                                 modal += '</div>';
                                             });

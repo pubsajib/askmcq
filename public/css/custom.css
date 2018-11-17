@@ -69,3 +69,6 @@ button{ cursor: pointer;}
 	color: #fa4f13;
 	background-color: #d5d5d5;
 }
+/* CATEGORY */
+.services .items{ cursor: pointer; }
+.services .items:hover h4{ color: #fff; }

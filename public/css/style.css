@@ -591,6 +591,7 @@ span.drop_down_icon{
 	padding: 20px;
 	margin-bottom: 20px;
 	text-align: center;
+	cursor: pointer;
 }
 .services .items a {
 	padding: 0;

@@ -29,15 +29,16 @@
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                <label for="">Profile Image</label>
-                <input type="file" name="image" class="form-control">
-                @if ($user->image)
-                    <div class="profile-image">
-                        <img class="mt20 img-circle" src="{{ asset('images/users/'.$user->image) }}" alt="{{ $user->name }} image">
-                    </div>
-                @else
-                    <span class="mt20 fa fa-user circle-icon"></span>
-                @endif
+                <label for="">Profile Image &nbsp; &nbsp; &nbsp;</label>
+                <input type="hidden" name="image" class="form-control" id="profileImageInput">
+                <a href="javascript:;" class="btn btn-theme-border pill" @click="imageUploadModal">Upload Image</a>
+                <div class="profile-image">
+                    @if ($user->image)
+                            <img class="mt20 img-circle" src="{{ asset('images/users/'.$user->image) }}" alt="{{ $user->name }} image">
+                    @else
+                        <span class="mt20 fa fa-user circle-icon"></span>
+                    @endif
+                </div>
             </div>
         </div>
         <div class="col-sm-12 text-right">
