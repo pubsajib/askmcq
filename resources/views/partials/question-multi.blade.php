@@ -4,15 +4,15 @@
 	<textarea name="title" class="form-control"></textarea> 
 
 	<div class="questionsWrapper">
-		<input type="hidden" name="questions" value="1" id="numberOfQuestions">
-		<input type="hidden" name="category" class="subcategory" value="">
+		<input type="hidden" name="questions" id="numberOfQuestions" value="1">
+		<input type="hidden" name="category" class="subcategory">
 		<div class="question">
+			<input type="hidden" name="answer[]" class="optionsAnswer">
+			<input type="hidden" name="options[]" class="options questionOptions">
 			<br>
 			<div class="highlight-title no-margin"> <div class="title">Your Question</div> </div>
 			<textarea name="question[]" class="form-control"></textarea> <br>
 			<div class="highlight-title no-margin"> <div class="title">Options</div> </div>
-			<input type="hidden" name="options[]" class="options questionOptions" value="">
-			<input type="hidden" name="answer[]" class="optionsAnswer" value="">
 			<div class="questions no-padding">
 				<div class="single-question"> 
 					<ul></ul> 

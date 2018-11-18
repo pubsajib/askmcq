@@ -1,7 +1,7 @@
 <form action="{{ route('question.store') }}" method="post">
 	@csrf
 	<div class="questionWrapper">
-		<input type="hidden" name="questions" value="1" id="numberOfQuestions">
+		<input type="hidden" name="questions" value="1">
 		<input type="hidden" name="category" class="subcategory" value="">
 		<div class="question">
 			<br>

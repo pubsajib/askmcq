@@ -591,7 +591,6 @@ span.drop_down_icon{
 	padding: 20px;
 	margin-bottom: 20px;
 	text-align: center;
-	cursor: pointer;
 }
 .services .items a {
 	padding: 0;
@@ -826,17 +825,17 @@ span.drop_down_icon{
 		Radio Selection
 -------------------------------*/
 .questions .single-question ul {
-	width: 48%;
+	/*width: 48%;
 	margin-right: 2%;
-	float: left;
+	float: left;*/
 }
 .questions .single-question ul li {
   	margin-bottom: 20px;
   	position: relative;
   	font-size: 18px;
   	color: #454545;
-  	display: block;
-  	width: 100%;
+  	/*width: 100%;*/
+  	/*display: block;*/
 }
 .questions .single-question ul li span {
 	position: relative;

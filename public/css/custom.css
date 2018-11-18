@@ -1,3 +1,4 @@
+.test{border: 1px solid red; }
 button{ cursor: pointer;}
 .mt20{margin-top: 20px;}
 .alert{z-index: 9; }
@@ -72,3 +73,45 @@ button{ cursor: pointer;}
 /* CATEGORY */
 .services .items{ cursor: pointer; }
 .services .items:hover h4{ color: #fff; }
+
+/*QUESTIONS*/
+.addNewOption{cursor: pointer;}
+.question {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.question:last-child {
+    margin-bottom: 0;
+}
+.questions .single-question{padding: 30px 0;}
+.questions .single-question ul {
+    width: inherit;
+    margin-right: 0;
+    float: none;
+}
+.questions .single-question ul li{
+    width: 48%;
+    margin-right: 2%;
+    display: inline-block;
+    float: left;
+    /*cursor: pointer;*/
+    padding: 5px 0px 5px 15px;
+    /*border: 1px solid;*/
+}
+.questions .single-question ul li:hover{
+    background-color: #eee;
+}
+.questions .single-question ul li .removeOption {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 25px;
+    padding: 5px;
+    display: none;
+}
+.questions .single-question ul li:hover .removeOption{display: block;}
+.questions .single-question ul li .check {left: 15px; top: 5px; }
+.questions .single-question ul li .optionLabel:hover,
+.questions .single-question ul li.active .optionLabel { color: #fff; background-color: #fb4f14; border-radius: 50%; }
