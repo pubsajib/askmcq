@@ -18,6 +18,8 @@ class CreateQuestionsTable extends Migration {
             $table->string('title')->nullable();
             $table->enum('type', ['saved', 'submited'])->default('saved');
             $table->enum('published', ['0', '1'])->default('0');
+            $table->enum('q_type', ['single', 'multi'])->default('single');
+            $table->integer('mq_id')->nullable();
             $table->timestamps();
         });
     }

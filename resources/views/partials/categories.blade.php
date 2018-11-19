@@ -24,7 +24,7 @@
                 <div class="row">
                     @foreach ($groups as $group)
                         @if (!$group->categories->isEmpty())
-                            <div class="col-6 col-sm-2">
+                            <div class="col-6 col-sm-2 groupContainer" id="group_{{ $group->id }}">
                                 <div class="items catItem" @click="groupModal({{ $group->id }})">
                                     <div class="icon">
                                         <img class="default-img" src="images/icon/service2.png" alt="">

@@ -1,15 +1,15 @@
 <form action="{{ route('question.store') }}" method="post">
 	@csrf
 	<div class="questionWrapper">
-		<input type="hidden" name="questions" value="1">
-		<input type="hidden" name="category" class="subcategory" value="">
+		<input type="hidden" name="qtype" value="single">
+		<input type="hidden" name="category" class="subcategory">
 		<div class="question">
 			<br>
 			<div class="highlight-title no-margin"> <div class="title">Your Question</div> </div>
 			<textarea name="question[]" class="form-control"></textarea> <br>
 			<div class="highlight-title no-margin"> <div class="title">Options</div> </div>
-			<input type="hidden" name="options[]" class="options questionOptions" value="">
-			<input type="hidden" name="answer[]" class="optionsAnswer" value="">
+			<input type="hidden" name="options" class="options questionOptions" value="">
+			<input type="hidden" name="answer" class="optionsAnswer" value="">
 			<div class="questions no-padding">
 				<div class="single-question"> 
 					<ul></ul> 
@@ -23,9 +23,9 @@
 				</div>
 			</div>
 			<div class="highlight-title white no-margin"> <div class="title">Explanation</div> </div>
-			<textarea name="explanation[]" class="form-control"></textarea><br>
+			<textarea name="explanation" class="form-control"></textarea><br>
 			<div class="highlight-title no-margin"> <div class="title">Direction to Solve</div> </div>
-			<textarea name="direction[]" class="form-control"></textarea>
+			<textarea name="direction" class="form-control"></textarea>
 		</div>
 	</div>
 	<div class="editor-button">

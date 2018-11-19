@@ -76,12 +76,14 @@ button{ cursor: pointer;}
 
 /*QUESTIONS*/
 .addNewOption{cursor: pointer;}
-.question {
+.question {border: 1px solid #000; margin-top: 25px;}
+.questionContainer {
     background: #fff;
     padding: 20px;
     margin-bottom: 20px;
+    padding-top: 2px;
 }
-.question:last-child {
+.questionContainer:last-child {
     margin-bottom: 0;
 }
 .questions .single-question{padding: 30px 0;}
@@ -115,3 +117,9 @@ button{ cursor: pointer;}
 .questions .single-question ul li .check {left: 15px; top: 5px; }
 .questions .single-question ul li .optionLabel:hover,
 .questions .single-question ul li.active .optionLabel { color: #fff; background-color: #fb4f14; border-radius: 50%; }
+
+/*CATEGORY*/
+.services .active .items{background: #fb4f14; color: #fff;}
+.services .active .items .default-img{display: none;}
+.services .active .items .hover-img{display: inline-block;}
+.services .active .items h4{color: #fff;}

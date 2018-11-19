@@ -1,5 +1,6 @@
 jQuery(function($) {
 	var alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+	tinymceInit();
 
 	$(document).on('change', '.subCategoryRadio', function() {
 		var subcategory = $(this).val();
@@ -19,8 +20,7 @@ jQuery(function($) {
 		$('#addOption').modal('show');
 	});
 	$(document).on('click', '.addNewQuestinBtn', function() {
-		$('#numberOfQuestions').val(parseInt($('#numberOfQuestions').val()) + 1);
-		$('.question').first().clone().appendTo('.questionsWrapper');
+		addNewQuestion();
 	});
 	$(document).on('click', '.optionLabel', function() {
 		$(this).parents('.question').addClass('editing');
@@ -86,13 +86,50 @@ jQuery(function($) {
 		' </li>';
 		return item;
 	}
+	function addNewQuestion() {
+		$('#numberOfQuestions').val(parseInt($('#numberOfQuestions').val()) + 1);
+		var question = '';
+			question += '<div class="question">';
+			question += '<input type="hidden" name="answer[]" class="optionsAnswer">';
+			question += '<input type="hidden" name="options[]" class="options questionOptions">';
+			question += '<div class="highlight-title no-margin row">'; 
+				question += '<div class="title col-sm-6">Your Question</div>'; 
+				question += '<div class="col-sm-6 text-right"><a href="javascript:;" class="removeBtn"><span class="fa fa-trash"></span></a></div>';
+			question += '</div>';
+			question += '<div class="questionContainer">'+
+				'<textarea name="question[]" class="form-control"></textarea> <br>'+
+				'<div class="highlight-title no-margin"> <div class="title">Options</div> </div>'+
+				'<div class="questions no-padding">'+
+					'<div class="single-question">  '+
+						'<ul></ul>  '+
+						'<h6 class="text-center emptyOptionsMessage">Please add option using <strong class="text-danger addNewOption">Add Options</strong> button</h6>'+
+					'</div>'+
+					'<div class="answer">'+
+						'<div class="row">'+
+							'<div class="col-sm-9"></div>'+
+							'<div class="col-sm-3"> <p class="text-right"><a class="addNewOption" href="javascript:;">Add Options</a></p> </div>'+
+						'</div>'+
+					'</div>'+
+				'</div>';
+				question += '<div class="highlight-title no-margin"> <div class="title">Explanation</div> </div>'+
+				'<textarea name="explanation[]" class="form-control"></textarea><br>'+
+				'<div class="highlight-title no-margin"> <div class="title">Direction to Solve</div> </div>'+
+				'<textarea name="direction[]" class="form-control"></textarea>';
+			question += '</div>';
+		question += '</div>';
+		$('.questionsWrapper').append(question);
+		tinymceInit();
+	}
+	function tinymceInit() {
+		tinyMCE.remove();
+		tinymce.init({
+			selector: 'textarea',
+			branding: false,
+			menubar : false,
+			statusbar: false,
+			forced_root_block : "",
+			plugins: [ 'autosave', 'lists', 'autolink', 'link', 'image','code' ],
+			toolbar: 'undo redo | styleselect | bold italic | link unlink image | alignleft aligncenter alignright outdent indent | bullist numlist | code',
+		});
+	}
 });
-// tinymce.init({
-// 	selector: 'textarea',
-// 	branding: false,
-// 	menubar : false,
-// 	statusbar: false,
-// 	forced_root_block : "",
-// 	plugins: [ 'autosave', 'lists', 'autolink', 'link', 'image','code' ],
-// 	toolbar: 'undo redo | styleselect | bold italic | link unlink image | alignleft aligncenter alignright outdent indent | bullist numlist | code',
-// });

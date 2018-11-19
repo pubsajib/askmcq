@@ -80,7 +80,7 @@ class ProfileController extends Controller {
     public function incrementProfileView($user_id, $ip) {
         if (auth()->check()) $viewer_id = auth()->user()->id;
         else $viewer_id = 0;
-        if ($user_id == $viewer_id) return false;
+        if ($user_id == $viewer_id) return false; // DONT INCREMENT VIEW FOR OWN PROFILE
         $profileView = Profileview::where('user_id', $user_id)->where('ip', $ip)->first();
         if (!$profileView) {
             $profileView = new Profileview;

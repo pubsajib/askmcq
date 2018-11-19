@@ -11,7 +11,7 @@
     <link href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}?t={{time()}}" />
     {{-- <link rel="stylesheet" href="{{ asset('css/custom.css') }}?v={{ time() }}" /> --}}
     @yield('styles')
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
@@ -77,6 +77,9 @@
                     .then(function(response) {
                         // console.log(response.data);
                         vue.showSubCategoryModal(response.data);
+                        $('.groupContainer').removeClass('active');
+                        var ID = '#group_'+ groupID;
+                        jQuery(ID).addClass('active');
                     })
                     .catch(function(error) {
                         console.log(error);
@@ -95,7 +98,7 @@
                                         '</h5>'+
                                     '</div>';
                                 modal += '<div id="catCollapse_'+ category.id +'" class="collapse" aria-labelledby="headingOne" data-parent="#subcategoryList">'+
-                                    '<div class="card-body">'+
+                                    '<div class="card-body" group="'+ category.id +'">'+
                                         '<div class="row">';
                                             category.subcategories.forEach(function(subcategory) {
                                                 var subCatID = 'sub_'+ subcategory.category_id +'_'+ subcategory.id;

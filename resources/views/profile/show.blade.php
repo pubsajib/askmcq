@@ -43,7 +43,11 @@
 							<p><span class="fa fa-line-chart"></span> {{ $user->views->count() }} Lifetime Views</p>
 						</div>
 						<div class="follow">
-							<a href="#" class="btn btn-theme pill">FOLLOW</a>
+							@if (Route::currentRouteName() == 'profile.show' )
+								<a href="#" class="btn btn-theme pill">FOLLOW</a>
+							@else
+								<a href="{{ route('question.ask') }}" class="btn btn-theme pill">ASKMCQ</a>
+							@endif
 						</div>
 						<div class="option">
 							<ul>

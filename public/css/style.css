@@ -198,8 +198,24 @@ textarea:focus,
 	margin-bottom: 0;
 	color: #fff;
 }
+.questionContainer .highlight-title .title {
+	font-size: 18px;
+	line-height: 24px;
+}
 .highlight-title.white .title {
 	color: #454545;
+}
+.removeBtn{}
+.removeBtn .fa{
+	background: #fb4f14;
+    color: #fff;
+    height: 35px;
+    width: 35px;
+    text-align: center;
+    line-height: 31px;
+    border-radius: 50%;
+    border: 2px solid;
+    margin-top: 5px;
 }
 /*-----------------------------
 		Text Editor
