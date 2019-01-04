@@ -32,7 +32,7 @@
                 <label for="">Profile Image &nbsp; &nbsp; &nbsp;</label>
                 <input type="hidden" name="image" class="form-control" id="profileImageInput">
                 <a href="javascript:;" class="btn btn-theme-border pill" @click="imageUploadModal">Upload Image</a>
-                <div class="profile-image">
+                <div class="profile-image" @click="imageUploadModal">
                     @if ($user->image)
                             <img class="mt20 img-circle" src="{{ asset('images/users/'.$user->image) }}" alt="{{ $user->name }} image">
                     @else
