@@ -15,9 +15,8 @@ class ProfileController extends Controller {
     public function view() {
         $user_id = auth()->user()->id;
         $alphabets = $this->alphabets;
-        $user = User::with('questions', 'views', 'monthlyViews')->find($user_id);
-        $questions = filter_questions($user);
-        return view('profile.show', compact('user', 'alphabets', 'questions'));
+        $user = User::with('savedQuestions', 'submitedQuestions', 'views', 'monthlyViews')->find($user_id);
+        return view('profile.show', compact('user', 'alphabets'));
     }
     public function show(Request $request, $user_id=null) {
         $ip = request()->ip();

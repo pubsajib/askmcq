@@ -4,9 +4,8 @@
 		<input type="hidden" name="qtype" value="single">
 		<input type="hidden" name="category" class="subcategory">
 		<div class="question">
-			<br>
 			<div class="highlight-title no-margin"> <div class="title">Your Question</div> </div>
-			<textarea name="question[]" class="form-control"></textarea> <br>
+			<textarea name="question" class="form-control"></textarea> <br>
 			<div class="highlight-title no-margin"> <div class="title">Options</div> </div>
 			<input type="hidden" name="options" class="options questionOptions" value="">
 			<input type="hidden" name="answer" class="optionsAnswer" value="">

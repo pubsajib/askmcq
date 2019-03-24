@@ -13,7 +13,7 @@
 			<input type="hidden" name="options[]" class="options questionOptions">
 			<div class="highlight-title no-margin row"> 
 				<div class="title col-sm-6">Your Question</div> 
-				<div class="col-sm-6 text-right"><a href="javascript:;" class="removeBtn"><span class="fa fa-trash"></span></a></div>
+				{{-- <div class="col-sm-6 text-right"><a href="javascript:;" class="removeBtn"><span class="fa fa-trash"></span></a></div> --}}
 			</div>
 			<div class="questionContainer">
 				<textarea name="question[]" class="form-control"></textarea> <br>

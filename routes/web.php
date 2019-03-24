@@ -1,4 +1,5 @@
 <?php
+
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index')->name('dashboard');
     Route::get('/logout', 'AdminController@logout')->name('admin.logout');

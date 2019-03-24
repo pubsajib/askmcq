@@ -79,14 +79,14 @@ button{ cursor: pointer;}
 .question {border: 1px solid #000; margin-top: 25px;}
 .questionContainer {
     background: #fff;
-    padding: 20px;
+    padding: 4px;
     margin-bottom: 20px;
     padding-top: 2px;
 }
 .questionContainer:last-child {
     margin-bottom: 0;
 }
-.questions .single-question{padding: 30px 0;}
+.questions .single-question{padding: 30px 10px;}
 .questions .single-question ul {
     width: inherit;
     margin-right: 0;
@@ -123,3 +123,7 @@ button{ cursor: pointer;}
 .services .active .items .default-img{display: none;}
 .services .active .items .hover-img{display: inline-block;}
 .services .active .items h4{color: #fff;}
+
+/*CUSTOM TAB*/
+.tabContent {display: none;}
+.tabContent.active {display: block;}

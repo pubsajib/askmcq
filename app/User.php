@@ -11,6 +11,13 @@ class User extends Authenticatable implements MustVerifyEmail{
     protected $hidden = ['password', 'remember_token', ];
     public function questions() {
         return $this->hasMany(Question::class)->latest();
+        // return $this->hasMany(Question::class)->paginate(5);
+    }
+    public function savedQuestions() {
+        return $this->hasMany(Question::class)->where('type', 'saved')->latest();
+    }
+    public function submitedQuestions() {
+        return $this->hasMany(Question::class)->where('type', 'submited')->latest();
     }
     public function followers() {
         return $this->belongsToMany(User::class, 'followers', 'leader_id', 'follower_id')->withTimestamps();

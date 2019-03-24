@@ -782,10 +782,8 @@ span.drop_down_icon{
 	font-size: 20px;
 	padding: 13px 0;
 }
-.questions .single-question ul li small {
-	display: block;
-	color: #fb4f14;
-}
+.questions .single-question ul li small { color: #fb4f14;}
+.questions .single-question ul li small.selectedText { margin-left: 20px;}
 .questions .single-question ul li small .fa {
 	top: 0;
 	left: 0;
@@ -863,7 +861,7 @@ span.drop_down_icon{
 	visibility: hidden;
 }
 .questions .single-question ul li label{
-    padding: 3px 10px 0 9px;
+    padding: 1px 10px 0 9px;
   	position: relative;
   	font-weight: 700;
   	cursor: pointer;
