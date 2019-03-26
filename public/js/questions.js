@@ -29,6 +29,7 @@ jQuery(function($) {
 	$(document).on('click', '.optionLabel', function() {
 		$(this).parents('.question').addClass('editing');
 		$('.editing .single-question li').removeClass('active');
+		$('.editing .single-question li .selectedText').html('');
 		$(this).parent().addClass('active').find('.selectedText').html('<span class="fa fa-check-circle-o"></span> Currect Answer');
 		$('.editing .optionsAnswer').val($.trim($('.editing li.active .txt').text()));
 		$('.question').removeClass('editing');

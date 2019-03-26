@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Welcome to <img src="images/logo/modal.png" alt=""></h4>
+                <h4 class="modal-title">Welcome to <img src="{{ asset('images/logo/modal.png') }}" alt=""></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
